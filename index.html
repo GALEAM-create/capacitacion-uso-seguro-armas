@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -23,7 +24,7 @@
       padding: 0;
       font-family: Arial, Helvetica, sans-serif;
     }
- 
+
     body {
       background: var(--gris-claro);
       color: var(--azul-oscuro);
@@ -61,16 +62,36 @@
       padding: 85px 10%;
       display: flex;
       align-items: center;
-      background:
-        linear-gradient(90deg, rgba(8,28,44,0.96), rgba(8,28,44,0.82)),
-        url("https://www.pexels.com/download/video/5243161/");
-      background-size: cover;
-      background-position: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--azul-oscuro);
       color: var(--blanco);
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-capa {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        90deg,
+        rgba(8, 28, 44, 0.96),
+        rgba(8, 28, 44, 0.78)
+      );
     }
 
     .hero-contenido {
       max-width: 720px;
+      position: relative;
+      z-index: 2;
     }
 
     .etiqueta {
@@ -254,6 +275,7 @@
       }
     }
   </style>
+
 </head>
 
 <body>
@@ -265,74 +287,86 @@
 
   <main>
     <section class="hero">
-      <div class="hero-contenido">
-        <div class="etiqueta">CAPACITACIÓN OBLIGATORIA</div>
 
-        <h1>Uso <span>Seguro</span> de Armas de Fuego</h1>
+```
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/fondo-seguridad.mp4" type="video/mp4">
+    Tu navegador no puede reproducir el video.
+  </video>
 
-        <p>
-          Programa de formación enfocado en la prevención de incidentes,
-          el cumplimiento de protocolos y el manejo responsable del equipo
-          asignado durante el servicio.
-        </p>
+  <div class="hero-capa"></div>
 
-        <div class="botones">
-          <a href="#modulos" class="boton boton-principal">Conocer el programa</a>
-          <a href="#" class="boton boton-secundario">Ingresar a capacitación</a>
-        </div>
-      </div>
-    </section>
+  <div class="hero-contenido">
+    <div class="etiqueta">CAPACITACIÓN OBLIGATORIA</div>
 
-    <section class="indicadores">
-      <article class="tarjeta">
-        <h3>Capacitación controlada</h3>
-        <p>Registro individual de avance, evaluación y cumplimiento por colaborador.</p>
-      </article>
+    <h1>Uso <span>Seguro</span> de Armas de Fuego</h1>
 
-      <article class="tarjeta">
-        <h3>Enfoque preventivo</h3>
-        <p>Contenido diseñado para reforzar responsabilidad, protocolos y reducción de riesgos.</p>
-      </article>
+    <p>
+      Programa de formación enfocado en la prevención de incidentes,
+      el cumplimiento de protocolos y el manejo responsable del equipo
+      asignado durante el servicio.
+    </p>
 
-      <article class="tarjeta">
-        <h3>Seguimiento directivo</h3>
-        <p>Indicadores y reportes para visualizar avances, pendientes y resultados por servicio.</p>
-      </article>
-    </section>
+    <div class="botones">
+      <a href="#modulos" class="boton boton-principal">Conocer el programa</a>
+      <a href="#" class="boton boton-secundario">Ingresar a capacitación</a>
+    </div>
+  </div>
 
-    <section class="seccion" id="modulos">
-      <h2>Contenido del programa</h2>
-      <p>
-        La capacitación se estructura en módulos breves, con seguimiento por participante
-        y una evaluación final para validar la comprensión de los protocolos.
-      </p>
+</section>
 
-      <div class="modulos">
-        <article class="modulo">
-          <div class="numero">MÓDULO 01</div>
-          <h3>Responsabilidad institucional</h3>
-          <p>Importancia del cumplimiento, consecuencias y responsabilidad individual durante el servicio.</p>
-        </article>
+<section class="indicadores">
+  <article class="tarjeta">
+    <h3>Capacitación controlada</h3>
+    <p>Registro individual de avance, evaluación y cumplimiento por colaborador.</p>
+  </article>
 
-        <article class="modulo">
-          <div class="numero">MÓDULO 02</div>
-          <h3>Principios de seguridad</h3>
-          <p>Reglas preventivas para reducir riesgos y mantener condiciones seguras en todo momento.</p>
-        </article>
+  <article class="tarjeta">
+    <h3>Enfoque preventivo</h3>
+    <p>Contenido diseñado para reforzar responsabilidad, protocolos y reducción de riesgos.</p>
+  </article>
 
-        <article class="modulo">
-          <div class="numero">MÓDULO 03</div>
-          <h3>Protocolos de resguardo</h3>
-          <p>Lineamientos institucionales para el porte, traslado, entrega y resguardo del equipo.</p>
-        </article>
+  <article class="tarjeta">
+    <h3>Seguimiento directivo</h3>
+    <p>Indicadores y reportes para visualizar avances, pendientes y resultados por servicio.</p>
+  </article>
+</section>
 
-        <article class="modulo">
-          <div class="numero">MÓDULO 04</div>
-          <h3>Evaluación y constancia</h3>
-          <p>Validación del aprendizaje, resultado individual y generación de evidencia de cumplimiento.</p>
-        </article>
-      </div>
-    </section>
+<section class="seccion" id="modulos">
+  <h2>Contenido del programa</h2>
+  <p>
+    La capacitación se estructura en módulos breves, con seguimiento por participante
+    y una evaluación final para validar la comprensión de los protocolos.
+  </p>
+
+  <div class="modulos">
+    <article class="modulo">
+      <div class="numero">MÓDULO 01</div>
+      <h3>Responsabilidad institucional</h3>
+      <p>Importancia del cumplimiento, consecuencias y responsabilidad individual durante el servicio.</p>
+    </article>
+
+    <article class="modulo">
+      <div class="numero">MÓDULO 02</div>
+      <h3>Principios de seguridad</h3>
+      <p>Reglas preventivas para reducir riesgos y mantener condiciones seguras en todo momento.</p>
+    </article>
+
+    <article class="modulo">
+      <div class="numero">MÓDULO 03</div>
+      <h3>Protocolos de resguardo</h3>
+      <p>Lineamientos institucionales para el porte, traslado, entrega y resguardo del equipo.</p>
+    </article>
+
+    <article class="modulo">
+      <div class="numero">MÓDULO 04</div>
+      <h3>Evaluación y constancia</h3>
+      <p>Validación del aprendizaje, resultado individual y generación de evidencia de cumplimiento.</p>
+    </article>
+  </div>
+</section>
+```
+
   </main>
 
   <footer>
