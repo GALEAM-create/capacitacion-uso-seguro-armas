@@ -1,377 +1,138 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Uso Seguro de Armas de Fuego | Capacitación</title>
+<title>Sitio en mantenimiento</title>
 
-  <style>
-    :root {
-      --azul-oscuro: #081c2c;
-      --azul-medio: #123b59;
-      --azul-claro: #1e5b82;
-      --dorado: #c9a34e;
-      --blanco: #ffffff;
-      --gris-claro: #eef3f6;
-      --gris-texto: #5d6870;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
 
-    body {
-      background: var(--gris-claro);
-      color: var(--azul-oscuro);
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+}
 
-    header {
-      background: var(--azul-oscuro);
-      color: var(--blanco);
-      padding: 18px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 3px solid var(--dorado);
-    }
+body{
 
-    .logo {
-      font-size: 20px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#071826,#103552,#1b5d84);
+overflow:hidden;
+color:white;
+text-align:center;
 
-    .logo span {
-      color: var(--dorado);
-    }
+}
 
-    .estado {
-      font-size: 13px;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 20px;
-      padding: 8px 14px;
-    }
+/* Marca de agua */
 
-    .hero {
-      min-height: 530px;
-      padding: 85px 10%;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background: var(--azul-oscuro);
-      color: var(--blanco);
-    }
+body::before{
 
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
+content:"";
+position:absolute;
+inset:0;
 
-    .hero-capa {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(
-        90deg,
-        rgba(8, 28, 44, 0.96),
-        rgba(8, 28, 44, 0.78)
-      );
-    }
+background:url("casco.png") center center no-repeat;
+background-size:450px;
 
-    .hero-contenido {
-      max-width: 720px;
-      position: relative;
-      z-index: 2;
-    }
+opacity:.04;
 
-    .etiqueta {
-      display: inline-block;
-      color: var(--dorado);
-      border: 1px solid var(--dorado);
-      border-radius: 20px;
-      padding: 8px 15px;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 22px;
-    }
+}
 
-    h1 {
-      font-size: clamp(38px, 5vw, 64px);
-      line-height: 1.08;
-      margin-bottom: 22px;
-    }
+/* Contenido */
 
-    h1 span {
-      color: var(--dorado);
-    }
+.contenedor{
 
-    .hero p {
-      max-width: 620px;
-      color: #d9e4ea;
-      line-height: 1.7;
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
+position:relative;
+z-index:10;
+max-width:700px;
+padding:40px;
 
-    .botones {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
+}
 
-    .boton {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 7px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.25s;
-    }
+.logo{
 
-    .boton-principal {
-      background: var(--dorado);
-      color: var(--azul-oscuro);
-    }
+width:110px;
+margin-bottom:35px;
 
-    .boton-principal:hover {
-      transform: translateY(-2px);
-      background: #dfbb6a;
-    }
+}
 
-    .boton-secundario {
-      border: 1px solid rgba(255,255,255,0.6);
-      color: var(--blanco);
-    }
+.engrane{
 
-    .boton-secundario:hover {
-      background: rgba(255,255,255,0.12);
-    }
+font-size:70px;
+animation:girar 8s linear infinite;
+margin-bottom:20px;
 
-    .indicadores {
-      max-width: 1100px;
-      margin: -55px auto 0;
-      padding: 0 25px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      position: relative;
-      z-index: 2;
-    }
+}
 
-    .tarjeta {
-      background: var(--blanco);
-      border-radius: 10px;
-      padding: 26px;
-      box-shadow: 0 10px 30px rgba(8, 28, 44, 0.14);
-      border-top: 4px solid var(--dorado);
-    }
+h1{
 
-    .tarjeta h3 {
-      margin-bottom: 10px;
-      font-size: 17px;
-    }
+font-size:52px;
+font-weight:800;
+margin-bottom:15px;
 
-    .tarjeta p {
-      color: var(--gris-texto);
-      line-height: 1.55;
-      font-size: 14px;
-    }
+}
 
-    .seccion {
-      max-width: 1100px;
-      margin: 70px auto;
-      padding: 0 25px;
-    }
+p{
 
-    .seccion h2 {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
+font-size:20px;
+opacity:.85;
+line-height:1.6;
 
-    .seccion > p {
-      color: var(--gris-texto);
-      max-width: 720px;
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
+}
 
-    .modulos {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
+small{
 
-    .modulo {
-      background: var(--blanco);
-      padding: 24px;
-      border-radius: 10px;
-      border: 1px solid #dbe4e9;
-    }
+display:block;
+margin-top:35px;
+opacity:.55;
+font-size:15px;
 
-    .numero {
-      color: var(--dorado);
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 14px;
-    }
+}
 
-    .modulo h3 {
-      font-size: 17px;
-      margin-bottom: 10px;
-    }
+@keyframes girar{
 
-    .modulo p {
-      color: var(--gris-texto);
-      font-size: 14px;
-      line-height: 1.55;
-    }
+from{
+transform:rotate(0deg);
+}
 
-    footer {
-      background: var(--azul-oscuro);
-      color: #c6d2d8;
-      text-align: center;
-      padding: 24px;
-      font-size: 13px;
-    }
+to{
+transform:rotate(360deg);
+}
 
-    @media (max-width: 850px) {
-      .indicadores,
-      .modulos {
-        grid-template-columns: 1fr 1fr;
-      }
+}
 
-      .hero {
-        padding: 70px 8%;
-      }
-    }
-
-    @media (max-width: 560px) {
-      header {
-        padding: 16px 6%;
-      }
-
-      .estado {
-        display: none;
-      }
-
-      .indicadores,
-      .modulos {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: 600px;
-      }
-    }
-  </style>
+</style>
 
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">GALEAM <span>•</span> CAPACITACIÓN</div>
-    <div class="estado">Plataforma institucional de capacitación</div>
-  </header>
+<div class="contenedor">
 
-  <main>
-    <section class="hero">
+<img src="logo.png" class="logo">
 
-```
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="assetsfondo-seguridad.mp4" type="video/mp4">
-    Tu navegador no puede reproducir el video.
-  </video>
+<div class="engrane">⚙️</div>
 
-  <div class="hero-capa"></div>
+<h1>Sitio en mantenimiento</h1>
 
-  <div class="hero-contenido">
-    <div class="etiqueta">CAPACITACIÓN OBLIGATORIA</div>
+<p>
+Estamos realizando mejoras para brindarte una mejor experiencia.
+<br><br>
+El sitio estará disponible nuevamente muy pronto.
+</p>
 
-    <h1>Uso <span>Seguro</span> de Armas de Fuego</h1>
+<small>
+Gracias por tu comprensión.
+</small>
 
-    <p>
-      Programa de formación enfocado en la prevención de incidentes,
-      el cumplimiento de protocolos y el manejo responsable del equipo
-      asignado durante el servicio.
-    </p>
-
-    <div class="botones">
-      <a href="#modulos" class="boton boton-principal">Conocer el programa</a>
-      <a href="#" class="boton boton-secundario">Ingresar a capacitación</a>
-    </div>
-  </div>
-
-</section>
-
-<section class="indicadores">
-  <article class="tarjeta">
-    <h3>Capacitación controlada</h3>
-    <p>Registro individual de avance, evaluación y cumplimiento por colaborador.</p>
-  </article>
-
-  <article class="tarjeta">
-    <h3>Enfoque preventivo</h3>
-    <p>Contenido diseñado para reforzar responsabilidad, protocolos y reducción de riesgos.</p>
-  </article>
-
-  <article class="tarjeta">
-    <h3>Seguimiento directivo</h3>
-    <p>Indicadores y reportes para visualizar avances, pendientes y resultados por servicio.</p>
-  </article>
-</section>
-
-<section class="seccion" id="modulos">
-  <h2>Contenido del programa</h2>
-  <p>
-    La capacitación se estructura en módulos breves, con seguimiento por participante
-    y una evaluación final para validar la comprensión de los protocolos.
-  </p>
-
-  <div class="modulos">
-    <article class="modulo">
-      <div class="numero">MÓDULO 01</div>
-      <h3>Responsabilidad institucional</h3>
-      <p>Importancia del cumplimiento, consecuencias y responsabilidad individual durante el servicio.</p>
-    </article>
-
-    <article class="modulo">
-      <div class="numero">MÓDULO 02</div>
-      <h3>Principios de seguridad</h3>
-      <p>Reglas preventivas para reducir riesgos y mantener condiciones seguras en todo momento.</p>
-    </article>
-
-    <article class="modulo">
-      <div class="numero">MÓDULO 03</div>
-      <h3>Protocolos de resguardo</h3>
-      <p>Lineamientos institucionales para el porte, traslado, entrega y resguardo del equipo.</p>
-    </article>
-
-    <article class="modulo">
-      <div class="numero">MÓDULO 04</div>
-      <h3>Evaluación y constancia</h3>
-      <p>Validación del aprendizaje, resultado individual y generación de evidencia de cumplimiento.</p>
-    </article>
-  </div>
-</section>
-```
-
-  </main>
-
-  <footer>
-    © 2026 GALEAM · Plataforma de capacitación institucional
-  </footer>
+</div>
 
 </body>
 </html>
