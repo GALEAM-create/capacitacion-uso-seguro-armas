@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -755,6 +754,191 @@
         flex-direction: column;
       }
     }
+  
+    /* =====================================================
+       ESTILO GALEAM · AZUL MARINO OSCURO + TEXTO BLANCO
+    ===================================================== */
+
+    :root {
+      --azul-marino: #071522;
+      --azul-marino-medio: #0b2032;
+      --azul-marino-claro: #123149;
+      --blanco: #ffffff;
+      --amarillo-galeam: #f1c735;
+      --rojo-galeam: #c92032;
+      --rojo-hover: #a91929;
+    }
+
+    /* ENCABEZADO */
+
+    header {
+      background: var(--azul-marino);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .marca-texto {
+      border-left-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .marca-texto strong {
+      color: var(--blanco);
+    }
+
+    .marca-texto span {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .menu a {
+      color: var(--blanco);
+    }
+
+    .menu a:hover {
+      color: var(--amarillo-galeam);
+    }
+
+    .boton-header {
+      border-color: var(--amarillo-galeam);
+      color: var(--blanco);
+      background: transparent;
+    }
+
+    .boton-header:hover {
+      color: var(--azul-marino);
+      background: var(--amarillo-galeam);
+    }
+
+    /* PORTADA */
+
+    .hero {
+      background: var(--azul-marino);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        90deg,
+        rgba(7, 21, 34, 0.98) 0%,
+        rgba(7, 21, 34, 0.94) 47%,
+        rgba(7, 21, 34, 0.86) 100%
+      );
+    }
+
+    .hero-video {
+      opacity: 0.16;
+      filter: grayscale(1) contrast(0.85);
+    }
+
+    .hero-trama {
+      z-index: 2;
+      opacity: 0.16;
+    }
+
+    .hero-linea {
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-marca-agua {
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.035);
+    }
+
+    .hero-contenido {
+      z-index: 3;
+    }
+
+    .eyebrow {
+      color: var(--blanco);
+    }
+
+    .eyebrow::before {
+      background: var(--amarillo-galeam);
+    }
+
+    h1,
+    h1 span {
+      color: var(--blanco);
+    }
+
+    .hero-descripcion {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .hero-detalle {
+      border-top-color: rgba(255, 255, 255, 0.26);
+    }
+
+    .hero-detalle-numero {
+      color: var(--amarillo-galeam);
+    }
+
+    .hero-detalle p {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    /* BOTONES DE PORTADA */
+
+    .boton-principal {
+      background: transparent;
+      border: 1px solid var(--amarillo-galeam);
+      color: var(--blanco);
+    }
+
+    .boton-principal:hover {
+      color: var(--azul-marino);
+      background: var(--amarillo-galeam);
+      border-color: var(--amarillo-galeam);
+    }
+
+    .boton-secundario {
+      color: var(--blanco);
+      border-color: rgba(255, 255, 255, 0.68);
+    }
+
+    .boton-secundario:hover {
+      color: var(--azul-marino);
+      background: var(--blanco);
+    }
+
+    /* BLOQUE VISUAL INTERMEDIO */
+
+    .bloque-visual {
+      background: var(--azul-marino);
+    }
+
+    .bloque-visual::before {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(7, 21, 34, 0.98),
+          rgba(18, 49, 73, 0.88)
+        ),
+        radial-gradient(
+          circle at 82% 16%,
+          rgba(241, 199, 53, 0.22),
+          transparent 34%
+        );
+    }
+
+    .bloque-frase span {
+      color: var(--amarillo-galeam);
+    }
+
+    /* FRANJA FINAL Y PIE */
+
+    .franja-final {
+      background: var(--azul-marino);
+    }
+
+    footer {
+      background: #050e17;
+      border-top-color: var(--amarillo-galeam);
+    }
+
   </style>
 </head>
 
@@ -979,4 +1163,3 @@
 
 </body>
 </html>
-```
