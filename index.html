@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,9 +16,11 @@
 
   <style>
     :root {
+      --azul-marino: #04080d;
+      --azul-marino-medio: #09111a;
+      --azul-marino-claro: #101a24;
+
       --negro: #111111;
-      --negro-profundo: #090909;
-      --gris-oscuro: #272727;
       --gris-texto: #666666;
       --gris-claro: #f4f4f1;
       --gris-linea: #e4e4df;
@@ -27,7 +30,7 @@
       --rojo-hover: #a91929;
       --amarillo-galeam: #f1c735;
 
-      --sombra: 0 18px 42px rgba(0, 0, 0, 0.12);
+      --sombra: 0 18px 42px rgba(0, 0, 0, 0.14);
     }
 
     * {
@@ -58,13 +61,13 @@
     header {
       width: 100%;
       min-height: 82px;
-      background: var(--blanco);
+      background: var(--azul-marino);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 28px;
       padding: 14px 7%;
-      border-bottom: 1px solid var(--gris-linea);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       position: relative;
       z-index: 10;
     }
@@ -83,7 +86,7 @@
     }
 
     .marca-texto {
-      border-left: 1px solid #d9d9d4;
+      border-left: 1px solid rgba(255, 255, 255, 0.24);
       padding-left: 15px;
       display: flex;
       flex-direction: column;
@@ -91,14 +94,14 @@
     }
 
     .marca-texto strong {
-      color: var(--negro);
+      color: var(--blanco);
       font-size: 11px;
       letter-spacing: 1.4px;
       font-weight: 800;
     }
 
     .marca-texto span {
-      color: var(--gris-texto);
+      color: rgba(255, 255, 255, 0.68);
       font-size: 10px;
       letter-spacing: 0.7px;
       text-transform: uppercase;
@@ -113,7 +116,7 @@
     }
 
     .menu a {
-      color: #343434;
+      color: var(--blanco);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.6px;
@@ -122,7 +125,7 @@
     }
 
     .menu a:hover {
-      color: var(--rojo-galeam);
+      color: var(--amarillo-galeam);
     }
 
     .boton-header {
@@ -131,8 +134,9 @@
       justify-content: center;
       min-height: 42px;
       padding: 0 19px;
-      border: 1px solid var(--rojo-galeam);
-      color: var(--rojo-galeam);
+      border: 1px solid var(--amarillo-galeam);
+      color: var(--blanco);
+      background: transparent;
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.8px;
@@ -142,12 +146,12 @@
     }
 
     .boton-header:hover {
-      color: var(--blanco);
-      background: var(--rojo-galeam);
+      color: var(--azul-marino);
+      background: var(--amarillo-galeam);
     }
 
     /* =========================
-       PORTADA
+       PORTADA CON VIDEO
     ========================== */
 
     .hero {
@@ -157,9 +161,27 @@
       align-items: center;
       overflow: hidden;
       color: var(--blanco);
+      background: var(--azul-marino);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
       background:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.83) 42%, rgba(0, 0, 0, 0.37) 100%),
-        var(--negro-profundo);
+        linear-gradient(
+          90deg,
+          rgba(4, 8, 13, 0.82) 0%,
+          rgba(4, 8, 13, 0.64) 45%,
+          rgba(4, 8, 13, 0.28) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.05) 0%,
+          rgba(0, 0, 0, 0.24) 100%
+        );
     }
 
     .hero-video {
@@ -169,14 +191,15 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
-      opacity: 0.78;
+      opacity: 0.64;
+      filter: grayscale(0.26) contrast(0.98) brightness(0.83);
     }
 
     .hero-trama {
       position: absolute;
       inset: 0;
-      z-index: 1;
-      opacity: 0.35;
+      z-index: 2;
+      opacity: 0.14;
       pointer-events: none;
       background-image:
         linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
@@ -192,14 +215,14 @@
       right: 15%;
       width: 1px;
       height: 100%;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.10);
     }
 
     .hero-marca-agua {
       position: absolute;
       right: -52px;
       bottom: -38px;
-      z-index: 1;
+      z-index: 2;
       color: rgba(255, 255, 255, 0.035);
       font-size: clamp(130px, 17vw, 280px);
       font-weight: 900;
@@ -222,7 +245,7 @@
       align-items: center;
       gap: 12px;
       margin-bottom: 24px;
-      color: var(--amarillo-galeam);
+      color: var(--blanco);
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 1.8px;
@@ -234,12 +257,13 @@
       display: inline-block;
       width: 42px;
       height: 3px;
-      background: var(--rojo-galeam);
+      background: var(--amarillo-galeam);
     }
 
     h1 {
       max-width: 720px;
       margin-bottom: 25px;
+      color: var(--blanco);
       font-size: clamp(41px, 5.3vw, 76px);
       font-weight: 900;
       line-height: 0.98;
@@ -248,13 +272,13 @@
     }
 
     h1 span {
-      color: var(--rojo-galeam);
+      color: var(--blanco);
     }
 
     .hero-descripcion {
       max-width: 600px;
       margin-bottom: 34px;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.88);
       font-size: 16px;
       font-weight: 500;
       line-height: 1.8;
@@ -282,12 +306,15 @@
     }
 
     .boton-principal {
-      background: var(--rojo-galeam);
+      background: transparent;
+      border: 1px solid var(--amarillo-galeam);
       color: var(--blanco);
     }
 
     .boton-principal:hover {
-      background: var(--rojo-hover);
+      color: var(--azul-marino);
+      background: var(--amarillo-galeam);
+      border-color: var(--amarillo-galeam);
       transform: translateY(-2px);
     }
 
@@ -299,12 +326,12 @@
 
     .boton-secundario {
       color: var(--blanco);
-      border: 1px solid rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.66);
     }
 
     .boton-secundario:hover {
+      color: var(--azul-marino);
       background: var(--blanco);
-      color: var(--negro);
     }
 
     .hero-detalle {
@@ -313,7 +340,7 @@
       gap: 17px;
       margin-top: 58px;
       padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-top: 1px solid rgba(255, 255, 255, 0.26);
       max-width: 610px;
     }
 
@@ -325,10 +352,63 @@
     }
 
     .hero-detalle p {
-      color: rgba(255, 255, 255, 0.67);
+      color: rgba(255, 255, 255, 0.82);
       font-size: 12px;
       font-weight: 500;
       line-height: 1.55;
+    }
+
+    /* =========================
+       TRANSICIÓN VIDEO → CLARO
+    ========================== */
+
+    .transicion-video {
+      height: 245px;
+      margin-top: -1px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          180deg,
+          #04080d 0%,
+          #0b1118 19%,
+          #262b31 46%,
+          #7b7d7d 71%,
+          var(--gris-claro) 100%
+        );
+    }
+
+    .transicion-video::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.28;
+      filter: blur(34px);
+      background:
+        radial-gradient(
+          ellipse at 78% 14%,
+          rgba(255, 255, 255, 0.22),
+          transparent 44%
+        ),
+        radial-gradient(
+          ellipse at 16% 30%,
+          rgba(11, 23, 35, 0.82),
+          transparent 52%
+        );
+    }
+
+    .transicion-video::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 80px;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--gris-claro) 100%
+      );
     }
 
     /* =========================
@@ -337,7 +417,7 @@
 
     .indicadores {
       width: min(1190px, 90%);
-      margin: -54px auto 0;
+      margin: -198px auto 0;
       position: relative;
       z-index: 5;
       display: grid;
@@ -398,7 +478,7 @@
 
     .seccion {
       width: min(1190px, 90%);
-      margin: 120px auto;
+      margin: 98px auto 110px;
     }
 
     .presentacion {
@@ -411,7 +491,7 @@
     .bloque-visual {
       min-height: 410px;
       position: relative;
-      background: var(--negro);
+      background: #05090e;
       overflow: hidden;
     }
 
@@ -420,8 +500,16 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(130deg, rgba(201, 32, 50, 0.94), rgba(116, 13, 23, 0.4)),
-        radial-gradient(circle at 80% 15%, rgba(241, 199, 53, 0.38), transparent 35%);
+        linear-gradient(
+          135deg,
+          rgba(4, 8, 13, 0.985),
+          rgba(16, 26, 36, 0.92)
+        ),
+        radial-gradient(
+          circle at 82% 16%,
+          rgba(241, 199, 53, 0.22),
+          transparent 34%
+        );
     }
 
     .bloque-visual::after {
@@ -429,7 +517,7 @@
       position: absolute;
       right: -22px;
       bottom: 7px;
-      color: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.10);
       font-size: 67px;
       font-weight: 900;
       letter-spacing: -4px;
@@ -457,8 +545,11 @@
       margin-bottom: 19px;
     }
 
-    .contenido-seccion h2,
-    .cabecera-modulos h2 {
+    .contenido-seccion .eyebrow::before {
+      background: var(--amarillo-galeam);
+    }
+
+    .contenido-seccion h2 {
       margin-bottom: 21px;
       color: var(--negro);
       font-size: clamp(30px, 3.2vw, 48px);
@@ -507,142 +598,6 @@
     }
 
     /* =========================
-       MÓDULOS
-    ========================== */
-
-    .zona-modulos {
-      padding: 100px 0;
-      background: var(--blanco);
-      border-top: 1px solid var(--gris-linea);
-      border-bottom: 1px solid var(--gris-linea);
-    }
-
-    .cabecera-modulos {
-      width: min(1190px, 90%);
-      margin: 0 auto 42px;
-      display: flex;
-      justify-content: space-between;
-      gap: 35px;
-      align-items: end;
-    }
-
-    .cabecera-modulos .texto {
-      max-width: 520px;
-      color: var(--gris-texto);
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.8;
-    }
-
-    .modulos {
-      width: min(1190px, 90%);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--gris-linea);
-      border: 1px solid var(--gris-linea);
-    }
-
-    .modulo {
-      min-height: 270px;
-      padding: 30px 26px;
-      background: var(--blanco);
-      position: relative;
-      transition: 0.25s ease;
-    }
-
-    .modulo:hover {
-      z-index: 2;
-      transform: translateY(-7px);
-      box-shadow: var(--sombra);
-    }
-
-    .numero {
-      display: inline-block;
-      margin-bottom: 34px;
-      color: var(--rojo-galeam);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1.2px;
-    }
-
-    .modulo h3 {
-      margin-bottom: 12px;
-      color: var(--negro);
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1.3;
-      text-transform: uppercase;
-    }
-
-    .modulo p {
-      color: var(--gris-texto);
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.72;
-    }
-
-    .franja-final {
-      width: min(1190px, 90%);
-      margin: 70px auto 0;
-      padding: 38px 42px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-      background: var(--negro);
-      color: var(--blanco);
-    }
-
-    .franja-final p {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 13px;
-      font-weight: 500;
-      line-height: 1.65;
-    }
-
-    .franja-final strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--blanco);
-      font-size: 20px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    /* =========================
-       PIE DE PÁGINA
-    ========================== */
-
-    footer {
-      padding: 42px 7%;
-      background: var(--negro-profundo);
-      border-top: 4px solid var(--rojo-galeam);
-      color: rgba(255, 255, 255, 0.58);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.35px;
-    }
-
-    .footer-frase {
-      color: var(--blanco);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .footer-frase span {
-      color: var(--amarillo-galeam);
-    }
-
-
-    /* =========================
        CIERRE DE CAPACITACIÓN
     ========================== */
 
@@ -654,7 +609,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 28px;
-      background: var(--azul-marino);
+      background: #05090e;
       color: var(--blanco);
     }
 
@@ -685,6 +640,84 @@
     }
 
     /* =========================
+       PIE DE PÁGINA
+    ========================== */
+
+    footer {
+      padding: 42px 7%;
+      background: #02060a;
+      border-top: 4px solid var(--amarillo-galeam);
+      color: rgba(255, 255, 255, 0.58);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.35px;
+    }
+
+    .footer-frase {
+      color: var(--blanco);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-frase span {
+      color: var(--amarillo-galeam);
+    }
+
+    /* =========================
+       ANIMACIONES AL BAJAR
+    ========================== */
+
+    .revelar {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.72s ease,
+        transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .revelar.revelar-izquierda {
+      transform: translateX(-38px);
+    }
+
+    .revelar.revelar-derecha {
+      transform: translateX(38px);
+    }
+
+    .revelar.visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .tarjeta.revelar:nth-child(1) {
+      transition-delay: 0.05s;
+    }
+
+    .tarjeta.revelar:nth-child(2) {
+      transition-delay: 0.18s;
+    }
+
+    .tarjeta.revelar:nth-child(3) {
+      transition-delay: 0.31s;
+    }
+
+    .tarjeta.revelar::before {
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.52s ease 0.20s;
+    }
+
+    .tarjeta.revelar.visible::before {
+      transform: scaleX(1);
+    }
+
+    /* =========================
        RESPONSIVE
     ========================== */
 
@@ -700,15 +733,6 @@
 
       .bloque-visual {
         min-height: 330px;
-      }
-
-      .modulos {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .cabecera-modulos {
-        align-items: flex-start;
-        flex-direction: column;
       }
     }
 
@@ -750,9 +774,13 @@
         margin-top: 42px;
       }
 
+      .transicion-video {
+        height: 185px;
+      }
+
       .indicadores {
         width: 88%;
-        margin-top: -30px;
+        margin-top: -145px;
         grid-template-columns: 1fr;
       }
 
@@ -768,27 +796,7 @@
 
       .seccion {
         width: 88%;
-        margin: 82px auto;
-      }
-
-      .zona-modulos {
-        padding: 78px 0;
-      }
-
-      .cabecera-modulos,
-      .modulos,
-      .franja-final {
-        width: 88%;
-      }
-
-      .modulos {
-        grid-template-columns: 1fr;
-      }
-
-      .franja-final {
-        padding: 30px 25px;
-        align-items: flex-start;
-        flex-direction: column;
+        margin: 78px auto 82px;
       }
 
       .cta-capacitacion {
@@ -804,198 +812,31 @@
         align-items: flex-start;
         flex-direction: column;
       }
-    }
-  
-    /* =====================================================
-       ESTILO GALEAM · AZUL MARINO OSCURO + TEXTO BLANCO
-    ===================================================== */
 
-    :root {
-      --azul-marino: #04080d;
-      --azul-marino-medio: #09111a;
-      --azul-marino-claro: #101a24;
-      --blanco: #ffffff;
-      --amarillo-galeam: #f1c735;
-      --rojo-galeam: #c92032;
-      --rojo-hover: #a91929;
+      .revelar.revelar-izquierda,
+      .revelar.revelar-derecha {
+        transform: translateY(25px);
+      }
+
+      .revelar.visible {
+        transform: translate3d(0, 0, 0);
+      }
     }
 
-    /* ENCABEZADO */
+    @media (prefers-reduced-motion: reduce) {
+      .revelar,
+      .revelar.revelar-izquierda,
+      .revelar.revelar-derecha {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
 
-    header {
-      background: var(--azul-marino);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      .tarjeta.revelar::before {
+        transform: scaleX(1);
+        transition: none;
+      }
     }
-
-    .marca-texto {
-      border-left-color: rgba(255, 255, 255, 0.24);
-    }
-
-    .marca-texto strong {
-      color: var(--blanco);
-    }
-
-    .marca-texto span {
-      color: rgba(255, 255, 255, 0.68);
-    }
-
-    .menu a {
-      color: var(--blanco);
-    }
-
-    .menu a:hover {
-      color: var(--amarillo-galeam);
-    }
-
-    .boton-header {
-      border-color: var(--amarillo-galeam);
-      color: var(--blanco);
-      background: transparent;
-    }
-
-    .boton-header:hover {
-      color: var(--azul-marino);
-      background: var(--amarillo-galeam);
-    }
-
-    /* PORTADA */
-
-    .hero {
-      background: var(--azul-marino);
-      isolation: isolate;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(7, 21, 34, 0.78) 0%,
-          rgba(7, 21, 34, 0.56) 46%,
-          rgba(7, 21, 34, 0.28) 100%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.06) 0%,
-          rgba(0, 0, 0, 0.18) 100%
-        );
-    }
-
-    .hero-video {
-      opacity: 0.62;
-      filter: grayscale(0.30) contrast(0.96) brightness(0.80);
-    }
-
-    .hero-trama {
-      z-index: 2;
-      opacity: 0.16;
-    }
-
-    .hero-linea {
-      z-index: 2;
-      background: rgba(255, 255, 255, 0.10);
-    }
-
-    .hero-marca-agua {
-      z-index: 2;
-      color: rgba(255, 255, 255, 0.035);
-    }
-
-    .hero-contenido {
-      z-index: 3;
-    }
-
-    .eyebrow {
-      color: var(--blanco);
-    }
-
-    .eyebrow::before {
-      background: var(--amarillo-galeam);
-    }
-
-    h1,
-    h1 span {
-      color: var(--blanco);
-    }
-
-    .hero-descripcion {
-      color: rgba(255, 255, 255, 0.88);
-    }
-
-    .hero-detalle {
-      border-top-color: rgba(255, 255, 255, 0.26);
-    }
-
-    .hero-detalle-numero {
-      color: var(--amarillo-galeam);
-    }
-
-    .hero-detalle p {
-      color: rgba(255, 255, 255, 0.82);
-    }
-
-    /* BOTONES DE PORTADA */
-
-    .boton-principal {
-      background: transparent;
-      border: 1px solid var(--amarillo-galeam);
-      color: var(--blanco);
-    }
-
-    .boton-principal:hover {
-      color: var(--azul-marino);
-      background: var(--amarillo-galeam);
-      border-color: var(--amarillo-galeam);
-    }
-
-    .boton-secundario {
-      color: var(--blanco);
-      border-color: rgba(255, 255, 255, 0.68);
-    }
-
-    .boton-secundario:hover {
-      color: var(--azul-marino);
-      background: var(--blanco);
-    }
-
-    /* BLOQUE VISUAL INTERMEDIO */
-
-    .bloque-visual {
-      background: #05090e;
-    }
-
-    .bloque-visual::before {
-      background:
-        linear-gradient(
-          135deg,
-          rgba(4, 8, 13, 0.985),
-          rgba(16, 26, 36, 0.92)
-        ),
-        radial-gradient(
-          circle at 82% 16%,
-          rgba(241, 199, 53, 0.22),
-          transparent 34%
-        );
-    }
-
-    .bloque-frase span {
-      color: var(--amarillo-galeam);
-    }
-
-    /* FRANJA FINAL Y PIE */
-
-    .franja-final {
-      background: #05090e;
-    }
-
-    footer {
-      background: #02060a;
-      border-top-color: var(--amarillo-galeam);
-    }
-
   </style>
 </head>
 
@@ -1003,7 +844,6 @@
 
   <header>
     <a href="#inicio" class="marca" aria-label="Inicio Galeam Capacitación">
-      <!-- Más adelante puedes descargar este logo y guardarlo como assets/logo-galeam.png -->
       <img
         src="https://static.wixstatic.com/media/cf373a_aff5bf69cbb04013830662885a011774~mv2.png/v1/fill/w_178,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Galeam_logo-color.png"
         alt="Galeam"
@@ -1027,9 +867,6 @@
 
     <section class="hero" id="inicio">
 
-      <!-- Conservé el nombre que ya estabas usando.
-           Si tu video está dentro de una carpeta, cámbialo por:
-           assets/fondo-seguridad.mp4 -->
       <video class="hero-video" autoplay muted loop playsinline>
         <source src="assetsfondo-seguridad.mp4" type="video/mp4">
         Tu navegador no puede reproducir el video.
@@ -1071,12 +908,13 @@
           </p>
         </div>
       </div>
-
     </section>
+
+    <div class="transicion-video" aria-hidden="true"></div>
 
     <section class="indicadores">
 
-      <article class="tarjeta">
+      <article class="tarjeta revelar">
         <div class="tarjeta-numero">01 / CONTROL</div>
         <h3>Capacitación controlada</h3>
         <p>
@@ -1085,7 +923,7 @@
         </p>
       </article>
 
-      <article class="tarjeta">
+      <article class="tarjeta revelar">
         <div class="tarjeta-numero">02 / PREVENCIÓN</div>
         <h3>Enfoque preventivo</h3>
         <p>
@@ -1094,7 +932,7 @@
         </p>
       </article>
 
-      <article class="tarjeta">
+      <article class="tarjeta revelar">
         <div class="tarjeta-numero">03 / SEGUIMIENTO</div>
         <h3>Visibilidad directiva</h3>
         <p>
@@ -1107,14 +945,14 @@
 
     <section class="seccion presentacion" id="programa">
 
-      <div class="bloque-visual">
+      <div class="bloque-visual revelar revelar-izquierda">
         <p class="bloque-frase">
           Tu seguridad,
           <span>nuestro compromiso.</span>
         </p>
       </div>
 
-      <div class="contenido-seccion">
+      <div class="contenido-seccion revelar revelar-derecha">
         <p class="eyebrow">Formación operativa</p>
 
         <h2>
@@ -1152,7 +990,6 @@
       </a>
     </section>
 
-
   </main>
 
   <footer>
@@ -1160,5 +997,39 @@
     <p>© 2026 GALEAM. Todos los derechos reservados.</p>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elementos = document.querySelectorAll(".revelar");
+
+      if (!("IntersectionObserver" in window)) {
+        elementos.forEach(elemento => {
+          elemento.classList.add("visible");
+        });
+
+        return;
+      }
+
+      const observador = new IntersectionObserver(
+        (entradas, observer) => {
+          entradas.forEach(entrada => {
+            if (entrada.isIntersecting) {
+              entrada.target.classList.add("visible");
+              observer.unobserve(entrada.target);
+            }
+          });
+        },
+        {
+          threshold: 0.16,
+          rootMargin: "0px 0px -65px 0px"
+        }
+      );
+
+      elementos.forEach(elemento => {
+        observador.observe(elemento);
+      });
+    });
+  </script>
+
 </body>
 </html>
+
