@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -642,6 +641,49 @@
       color: var(--amarillo-galeam);
     }
 
+
+    /* =========================
+       CIERRE DE CAPACITACIÓN
+    ========================== */
+
+    .cta-capacitacion {
+      width: min(1190px, 90%);
+      margin: 0 auto 110px;
+      padding: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      background: var(--azul-marino);
+      color: var(--blanco);
+    }
+
+    .cta-etiqueta {
+      margin-bottom: 10px;
+      color: var(--amarillo-galeam);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .cta-capacitacion h2 {
+      margin-bottom: 9px;
+      color: var(--blanco);
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -0.8px;
+      text-transform: uppercase;
+    }
+
+    .cta-capacitacion p:not(.cta-etiqueta) {
+      max-width: 620px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
     /* =========================
        RESPONSIVE
     ========================== */
@@ -744,6 +786,14 @@
       }
 
       .franja-final {
+        padding: 30px 25px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .cta-capacitacion {
+        width: 88%;
+        margin: 0 auto 82px;
         padding: 30px 25px;
         align-items: flex-start;
         flex-direction: column;
@@ -968,10 +1018,9 @@
     <nav class="menu">
       <a href="#inicio">Inicio</a>
       <a href="#programa">Programa</a>
-      <a href="#modulos">Módulos</a>
     </nav>
 
-    <a href="#modulos" class="boton-header">Iniciar capacitación</a>
+    <a href="#programa" class="boton-header">Iniciar capacitación</a>
   </header>
 
   <main>
@@ -1009,7 +1058,7 @@
             Conocer el programa <span>→</span>
           </a>
 
-          <a href="#modulos" class="boton-secundario">
+          <a href="#programa" class="boton-secundario">
             Ver contenido
           </a>
         </div>
@@ -1088,78 +1137,21 @@
 
     </section>
 
-    <section class="zona-modulos" id="modulos">
-
-      <div class="cabecera-modulos">
-        <div>
-          <p class="eyebrow">Contenido del programa</p>
-          <h2>Ruta de capacitación</h2>
-        </div>
-
-        <p class="texto">
-          El programa se presenta en módulos breves y secuenciales.
-          Al concluirlos, el participante realizará una evaluación
-          para validar los conocimientos adquiridos.
+    <section class="cta-capacitacion" aria-label="Inicio de capacitación">
+      <div>
+        <p class="cta-etiqueta">Capacitación institucional</p>
+        <h2>Listo para comenzar.</h2>
+        <p>
+          Revisa cuidadosamente el contenido y continúa cuando estés preparado
+          para registrar tu participación.
         </p>
       </div>
 
-      <div class="modulos">
-
-        <article class="modulo">
-          <div class="numero">MÓDULO 01</div>
-          <h3>Responsabilidad institucional</h3>
-          <p>
-            Importancia del cumplimiento, consecuencias y responsabilidad
-            individual durante el servicio.
-          </p>
-        </article>
-
-        <article class="modulo">
-          <div class="numero">MÓDULO 02</div>
-          <h3>Principios de seguridad</h3>
-          <p>
-            Reglas preventivas para reducir riesgos y conservar condiciones
-            seguras en todo momento.
-          </p>
-        </article>
-
-        <article class="modulo">
-          <div class="numero">MÓDULO 03</div>
-          <h3>Protocolos de resguardo</h3>
-          <p>
-            Lineamientos institucionales para el porte, traslado, entrega
-            y resguardo del equipo asignado.
-          </p>
-        </article>
-
-        <article class="modulo">
-          <div class="numero">MÓDULO 04</div>
-          <h3>Evaluación y constancia</h3>
-          <p>
-            Validación del aprendizaje, resultado individual y generación
-            de evidencia de cumplimiento.
-          </p>
-        </article>
-
-      </div>
-
-      <div class="franja-final">
-        <div>
-          <strong>¿Listo para comenzar?</strong>
-          <p>
-            Completa la capacitación de forma responsable y consulta
-            cuidadosamente todo el contenido antes de responder.
-          </p>
-        </div>
-
-        <!-- Cuando integremos el formulario y examen real,
-             cambia este href por la sección o archivo correspondiente. -->
-        <a href="#inicio" class="boton-principal">
-          Volver al inicio <span>↑</span>
-        </a>
-      </div>
-
+      <a href="#inicio" class="boton-principal">
+        Volver al inicio <span>↑</span>
+      </a>
     </section>
+
 
   </main>
 
@@ -1170,4 +1162,3 @@
 
 </body>
 </html>
-
