@@ -9,115 +9,525 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Montserrat',sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Montserrat',sans-serif;
 }
 
 body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#071826,#103552,#1b5d84);
+  overflow-x:hidden;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+}
 
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#071826,#103552,#1b5d84);
-overflow:hidden;
-color:white;
-text-align:center;
+/* Fondito con luces */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(80,170,255,.18), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(255,196,80,.10), transparent 25%),
+    radial-gradient(circle at 50% 90%, rgba(80,170,255,.13), transparent 30%);
+  pointer-events:none;
+}
 
+/* Nubes */
+.nube{
+  position:fixed;
+  width:110px;
+  height:35px;
+  background:rgba(255,255,255,.10);
+  border-radius:40px;
+  z-index:1;
+  animation:nubeMover 28s linear infinite;
+}
+
+.nube::before,
+.nube::after{
+  content:"";
+  position:absolute;
+  background:rgba(255,255,255,.10);
+  border-radius:50%;
+}
+
+.nube::before{
+  width:45px;
+  height:45px;
+  left:20px;
+  top:-20px;
+}
+
+.nube::after{
+  width:60px;
+  height:60px;
+  right:15px;
+  top:-32px;
+}
+
+.nube1{
+  top:18%;
+  left:-140px;
+}
+
+.nube2{
+  top:58%;
+  left:-180px;
+  animation-delay:10s;
+  transform:scale(.75);
+}
+
+@keyframes nubeMover{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(calc(100vw + 250px)); }
+}
+
+/* Partículas */
+.particula{
+  position:fixed;
+  width:5px;
+  height:5px;
+  background:#4eb3ff;
+  border-radius:50%;
+  opacity:.55;
+  animation:brillar 3s infinite alternate;
+  z-index:1;
+}
+
+.p1{ top:22%; left:18%; animation-delay:.2s; }
+.p2{ top:36%; left:82%; animation-delay:1s; }
+.p3{ top:68%; left:12%; animation-delay:1.5s; }
+.p4{ top:78%; left:74%; animation-delay:.8s; }
+.p5{ top:48%; left:48%; animation-delay:2s; }
+
+@keyframes brillar{
+  from{ opacity:.15; transform:scale(.7); }
+  to{ opacity:.8; transform:scale(1.4); }
 }
 
 /* Contenido */
-
 .contenedor{
-
-position:relative;
-z-index:10;
-max-width:700px;
-padding:40px;
-
-}
-
-.logo{
-
-width:110px;
-margin-bottom:35px;
-
+  position:relative;
+  z-index:10;
+  max-width:850px;
+  width:100%;
+  padding:35px;
 }
 
 .engrane{
-
-font-size:70px;
-animation:girar 8s linear infinite;
-margin-bottom:20px;
-
+  font-size:72px;
+  animation:girar 9s linear infinite;
+  margin-bottom:20px;
+  filter:drop-shadow(0 0 12px rgba(78,179,255,.8));
 }
 
 h1{
+  font-size:clamp(38px,6vw,68px);
+  font-weight:800;
+  margin-bottom:18px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  text-shadow:0 8px 22px rgba(0,0,0,.35);
+}
 
-font-size:52px;
-font-weight:800;
-margin-bottom:15px;
+.linea{
+  width:280px;
+  height:3px;
+  margin:0 auto 25px;
+  background:linear-gradient(90deg,transparent,#4eb3ff,#d9a53b,transparent);
+  border-radius:20px;
+  animation:lineaBrillo 2.5s infinite ease-in-out;
+}
 
+@keyframes lineaBrillo{
+  0%,100%{ opacity:.45; transform:scaleX(.8); }
+  50%{ opacity:1; transform:scaleX(1); }
 }
 
 p{
+  font-size:20px;
+  opacity:.9;
+  line-height:1.6;
+}
 
-font-size:20px;
-opacity:.85;
-line-height:1.6;
+.frase{
+  margin:25px auto;
+  font-size:18px;
+  color:#f3c766;
+  font-weight:600;
+  min-height:28px;
+}
 
+/* Columpio */
+.columpio{
+  position:relative;
+  width:260px;
+  height:255px;
+  margin:25px auto 10px;
+  transform-origin:top center;
+  animation:balanceo 3.8s ease-in-out infinite;
+}
+
+.cuerda{
+  position:absolute;
+  top:0;
+  width:5px;
+  height:170px;
+  background:linear-gradient(#b47a34,#6a421b);
+  border-radius:20px;
+}
+
+.cuerda.izq{ left:62px; }
+.cuerda.der{ right:62px; }
+
+.asiento{
+  position:absolute;
+  bottom:45px;
+  left:50%;
+  width:150px;
+  height:15px;
+  background:#8b5528;
+  border-radius:20px;
+  transform:translateX(-50%);
+  box-shadow:0 8px 14px rgba(0,0,0,.35);
+}
+
+.personaje{
+  position:absolute;
+  bottom:52px;
+  left:50%;
+  transform:translateX(-50%);
+  width:125px;
+  height:150px;
+}
+
+.casco{
+  position:absolute;
+  top:0;
+  left:28px;
+  width:70px;
+  height:38px;
+  background:linear-gradient(135deg,#ffd45b,#d89518);
+  border-radius:50px 50px 18px 18px;
+  z-index:3;
+}
+
+.casco::after{
+  content:"";
+  position:absolute;
+  left:-8px;
+  bottom:-5px;
+  width:86px;
+  height:12px;
+  background:#e0a22d;
+  border-radius:20px;
+}
+
+.cabeza{
+  position:absolute;
+  top:30px;
+  left:23px;
+  width:80px;
+  height:80px;
+  background:#f4f4f4;
+  border-radius:50%;
+  z-index:2;
+  box-shadow:inset -10px -12px 0 rgba(0,0,0,.08);
+}
+
+.ojo{
+  position:absolute;
+  top:58px;
+  width:9px;
+  height:18px;
+  background:#111;
+  border-radius:50%;
+  z-index:4;
+  animation:parpadeo 5s infinite;
+}
+
+.ojo.izq{ left:50px; }
+.ojo.der{ right:50px; }
+
+.sonrisa{
+  position:absolute;
+  top:82px;
+  left:56px;
+  width:28px;
+  height:15px;
+  border-bottom:4px solid #222;
+  border-radius:0 0 30px 30px;
+  z-index:4;
+}
+
+.cuerpo{
+  position:absolute;
+  bottom:20px;
+  left:35px;
+  width:58px;
+  height:60px;
+  background:#102f4c;
+  border-radius:18px;
+  z-index:1;
+}
+
+.brazo{
+  position:absolute;
+  top:88px;
+  width:20px;
+  height:55px;
+  background:#102f4c;
+  border-radius:20px;
+  z-index:1;
+}
+
+.brazo.izq{
+  left:18px;
+  transform:rotate(25deg);
+}
+
+.brazo.der{
+  right:18px;
+  transform:rotate(-25deg);
+}
+
+.pierna{
+  position:absolute;
+  bottom:0;
+  width:22px;
+  height:50px;
+  background:#071826;
+  border-radius:20px;
+  z-index:1;
+  animation:piernas 3.8s ease-in-out infinite;
+}
+
+.pierna.izq{
+  left:42px;
+  transform:rotate(18deg);
+}
+
+.pierna.der{
+  right:42px;
+  transform:rotate(-18deg);
+}
+
+@keyframes balanceo{
+  0%,100%{ transform:rotate(-5deg); }
+  50%{ transform:rotate(5deg); }
+}
+
+@keyframes piernas{
+  0%,100%{ transform:rotate(16deg); }
+  50%{ transform:rotate(-6deg); }
+}
+
+@keyframes parpadeo{
+  0%,92%,100%{ transform:scaleY(1); }
+  95%{ transform:scaleY(.1); }
+}
+
+/* Música */
+.musica{
+  margin:25px auto 0;
+  padding:24px;
+  border:1px solid rgba(78,179,255,.45);
+  border-radius:22px;
+  background:rgba(5,20,35,.55);
+  box-shadow:0 0 25px rgba(0,0,0,.25);
+  backdrop-filter:blur(8px);
+}
+
+.musica h2{
+  font-size:24px;
+  margin-bottom:18px;
+}
+
+.botones{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.botones button{
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.06);
+  color:white;
+  padding:12px 20px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:15px;
+  transition:.3s;
+}
+
+.botones button:hover,
+.botones button.activo{
+  background:#1e8fff;
+  border-color:#68bdff;
+  transform:translateY(-2px);
+}
+
+iframe{
+  width:100%;
+  max-width:620px;
+  height:315px;
+  border-radius:15px;
+  border:none;
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
 }
 
 small{
-
-display:block;
-margin-top:35px;
-opacity:.55;
-font-size:15px;
-
+  display:block;
+  margin-top:25px;
+  opacity:.65;
+  font-size:15px;
 }
 
 @keyframes girar{
-
-from{
-transform:rotate(0deg);
+  from{ transform:rotate(0deg); }
+  to{ transform:rotate(360deg); }
 }
 
-to{
-transform:rotate(360deg);
-}
+@media(max-width:600px){
+  .contenedor{
+    padding:20px 10px;
+  }
 
-}
+  iframe{
+    height:220px;
+  }
 
+  .musica{
+    padding:18px;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
+<div class="nube nube1"></div>
+<div class="nube nube2"></div>
+
+<div class="particula p1"></div>
+<div class="particula p2"></div>
+<div class="particula p3"></div>
+<div class="particula p4"></div>
+<div class="particula p5"></div>
+
 <div class="contenedor">
 
-<img src="logo.png" class="logo">
+  <div class="engrane">⚙️</div>
 
-<div class="engrane">⚙️</div>
+  <h1>Sitio en mantenimiento</h1>
 
-<h1>Sitio en mantenimiento</h1>
+  <div class="linea"></div>
 
-<p>
-Estoy realizando modificaciones a la pagina.
-<br><br>
-El sitio estará disponible nuevamente muy pronto.
-</p>
+  <p>
+    Estoy realizando modificaciones a la página.
+    <br>
+    El sitio estará disponible nuevamente muy pronto.
+  </p>
 
-<small>
-mejor esucha musica mientras esperas.
-</small>
+  <div class="columpio">
+    <div class="cuerda izq"></div>
+    <div class="cuerda der"></div>
+
+    <div class="personaje">
+      <div class="casco"></div>
+      <div class="cabeza"></div>
+      <div class="ojo izq"></div>
+      <div class="ojo der"></div>
+      <div class="sonrisa"></div>
+      <div class="brazo izq"></div>
+      <div class="brazo der"></div>
+      <div class="cuerpo"></div>
+      <div class="pierna izq"></div>
+      <div class="pierna der"></div>
+    </div>
+
+    <div class="asiento"></div>
+  </div>
+
+  <div class="frase" id="frase">
+    🔧 Ajustando unos cuantos tornillos...
+  </div>
+
+  <p>
+    🎵 Mejor escucha música mientras esperas. 🎵
+  </p>
+
+  <div class="musica">
+    <h2>🎧 Elige tu ambiente</h2>
+
+    <div class="botones">
+      <button class="activo" onclick="cambiarMusica('relajado', this)">🌿 Relajado</button>
+      <button onclick="cambiarMusica('lofi', this)">☕ Lo-fi</button>
+      <button onclick="cambiarMusica('energia', this)">⚡ Energía</button>
+      <button onclick="cambiarMusica('instrumental', this)">🎼 Instrumental</button>
+    </div>
+
+    <iframe
+      id="player"
+      src="https://www.youtube.com/embed/videoseries?list=PLgzTt0k8mXzEk586ze4BjvDXR7c-TUSnx"
+      title="Música de espera"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <small>
+    Gracias por tu comprensión. Volveremos pronto.
+  </small>
 
 </div>
+
+<script>
+const frases = [
+  "🔧 Ajustando unos cuantos tornillos...",
+  "☕ El desarrollador fue por un café...",
+  "💻 Compilando magia...",
+  "🚀 Ya casi terminamos...",
+  "🛠️ Fer está moviendo una línea de código...",
+  "😅 Esperemos que no se rompa otra cosa...",
+  "🎧 Mientras tanto, disfruta la música."
+];
+
+let indiceFrase = 0;
+
+setInterval(() => {
+  indiceFrase = (indiceFrase + 1) % frases.length;
+  document.getElementById("frase").textContent = frases[indiceFrase];
+}, 4000);
+
+const playlists = {
+  relajado: "PLgzTt0k8mXzEk586ze4BjvDXR7c-TUSnx",
+  lofi: "PLzCxunOM5WFJ7sbHi_9Zwq2xOwtkYeZlx",
+  energia: "PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj",
+  instrumental: "PLh2OWtr9llmZzO1YO8yY6Apv2hIRy0k6x"
+};
+
+function cambiarMusica(tipo, boton){
+  document.getElementById("player").src =
+    "https://www.youtube.com/embed/videoseries?list=" + playlists[tipo];
+
+  document.querySelectorAll(".botones button").forEach(btn => {
+    btn.classList.remove("activo");
+  });
+
+  boton.classList.add("activo");
+}
+</script>
 
 </body>
 </html>
