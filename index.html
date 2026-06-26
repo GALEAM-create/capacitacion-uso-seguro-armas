@@ -708,6 +708,64 @@
       line-height: 1.65;
     }
 
+    .panel-etiqueta {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--amarillo-galeam);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .panel-etiqueta::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--rojo-galeam);
+    }
+
+    .panel-apoyo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      gap: 9px;
+      padding-top: 19px;
+      color: rgba(255, 255, 255, 0.62);
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+
+    .panel-apoyo span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-apoyo span::before {
+      content: "•";
+      color: var(--amarillo-galeam);
+      font-size: 14px;
+      line-height: 0;
+    }
+
+    .modulo-panel-contenido .subtitulo-modulo {
+      margin: 0 0 14px;
+      color: var(--amarillo-galeam);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
     /* =========================
        PANTALLA 04 · ACTIVIDAD
     ========================== */
@@ -1313,34 +1371,49 @@
             <p class="eyebrow">Módulo 01 / Seguridad</p>
             <h2>El uso responsable comienza antes de utilizar el equipo.</h2>
             <p>
-              La prevención depende de mantener el control del equipo, evitar acciones imprudentes
-              y actuar con disciplina en todo momento.
+              Un arma de fuego debe considerarse un equipo de alta responsabilidad.
+              Su portación y manejo exigen atención, disciplina y apego permanente a
+              los protocolos establecidos.
             </p>
           </div>
 
           <div class="modulo-grid">
             <div class="modulo-panel-frase">
+              <span class="panel-etiqueta">Principio clave</span>
+
               <p>
                 La seguridad se construye con <span>atención, control y responsabilidad.</span>
               </p>
+
+              <div class="panel-apoyo">
+                <span>Atención al entorno</span>
+                <span>Control del equipo</span>
+                <span>Respeto al protocolo</span>
+              </div>
             </div>
 
             <div class="modulo-panel-contenido">
-              <h3>Reglas esenciales de seguridad</h3>
+              <p class="subtitulo-modulo">Reglas esenciales de seguridad</p>
+
+              <h3>Prevenir un incidente depende de decisiones responsables.</h3>
+
               <p>
-                Estas medidas ayudan a reducir riesgos durante la portación, el resguardo y la manipulación autorizada del equipo.
+                Durante el servicio, la prevención comienza al evitar acciones imprudentes,
+                mantener el control del equipo y actuar siempre con conciencia de las
+                consecuencias.
               </p>
 
               <ul class="lista-beneficios">
                 <li>Considera siempre el arma como si estuviera cargada.</li>
                 <li>Mantén el dedo fuera del disparador hasta que exista una necesidad legítima y autorizada.</li>
                 <li>Conserva el equipo orientado hacia una dirección segura.</li>
-                <li>No permitas el acceso a personas sin capacitación o autorización.</li>
-                <li>Evita juegos, bromas y cualquier manipulación innecesaria.</li>
+                <li>No apuntes a personas, objetos o zonas sin una razón operativa justificada.</li>
+                <li>No permitas que personas sin capacitación o autorización tengan acceso al equipo.</li>
+                <li>No juegues, bromees ni manipules el arma de manera innecesaria.</li>
               </ul>
 
               <p class="nota-modulo">
-                El cumplimiento de las medidas de seguridad protege tu integridad, la de tus compañeros y la de las personas a tu alrededor.
+                La seguridad no es un paso aislado: protege tu integridad, la de tus compañeros y la de las personas a tu alrededor.
               </p>
             </div>
           </div>
@@ -1354,33 +1427,48 @@
             <p class="eyebrow">Módulo 02 / Prevención</p>
             <h2>La seguridad también depende del control y la comunicación.</h2>
             <p>
-              Conocer las reglas es importante; aplicarlas con calma, criterio y apego a los protocolos es fundamental.
+              El manejo responsable del equipo no termina con conocer las reglas.
+              También requiere mantener la calma, reconocer los riesgos del entorno
+              y tomar decisiones apegadas a los protocolos de la empresa.
             </p>
           </div>
 
           <div class="modulo-grid">
             <div class="modulo-panel-frase">
+              <span class="panel-etiqueta">Toma de decisiones</span>
+
               <p>
                 Prevenir también es <span>observar, reportar y actuar con responsabilidad.</span>
               </p>
+
+              <div class="panel-apoyo">
+                <span>Conserva la calma</span>
+                <span>Identifica riesgos</span>
+                <span>Comunica anomalías</span>
+              </div>
             </div>
 
             <div class="modulo-panel-contenido">
-              <h3>Prevención, control y reporte</h3>
+              <p class="subtitulo-modulo">Antes, durante y después del servicio</p>
+
+              <h3>Prevención, control y reporte.</h3>
+
               <p>
-                El manejo responsable del equipo exige reconocer riesgos, evitar decisiones impulsivas y comunicar cualquier situación irregular.
+                Ante una situación de tensión, evita actuar por impulso. Mantén la
+                atención en tu entorno, prioriza la seguridad de las personas y
+                comunica cualquier situación que pueda representar un riesgo.
               </p>
 
               <ul class="lista-beneficios">
-                <li>Mantén el equipo bajo resguardo y fuera del alcance de personas no autorizadas.</li>
-                <li>Reporta de inmediato daños, pérdidas, anomalías o situaciones que representen un riesgo.</li>
+                <li>Revisa que el equipo se encuentre bajo resguardo y en condiciones adecuadas.</li>
+                <li>Reporta de inmediato cualquier anomalía, daño, pérdida o situación irregular.</li>
+                <li>Mantén el equipo fuera del alcance de personas no autorizadas.</li>
                 <li>Evita manipular el equipo cuando no sea necesario para tu función.</li>
-                <li>Ante una situación de tensión, prioriza la calma, el entorno y los protocolos establecidos.</li>
-                <li>Sigue las indicaciones de tu superior y los procedimientos internos de la empresa.</li>
+                <li>Sigue en todo momento las indicaciones de tu superior y los protocolos internos.</li>
               </ul>
 
               <p class="nota-modulo">
-                El autocontrol y la prevención son herramientas indispensables para tomar decisiones responsables durante el servicio.
+                El autocontrol, la capacitación y la prevención son herramientas fundamentales para proteger tu integridad, la de tus compañeros y la de las personas a tu alrededor.
               </p>
             </div>
           </div>
