@@ -426,10 +426,12 @@
     .pantalla-actividad,
     .pantalla-prevencion,
     .pantalla-inicio {
-      min-height: 100%;
-      position: relative;
+      position: absolute;
+      inset: 0;
+      min-height: 0;
       padding: 60px 8% 46px;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       background: rgba(4, 8, 13, 0.64);
     }
 
@@ -640,6 +642,12 @@
     }
 
     .modulo-panel-frase p span { color: var(--amarillo-galeam); }
+
+    .modulo-panel-frase {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
 
     .modulo-panel-contenido {
       min-height: 365px;
