@@ -1262,6 +1262,128 @@
         transition: none;
       }
     }
+  
+    /* =========================
+       MÓDULO 02 · FORMATO LIMPIO
+    ========================== */
+
+    .prevencion-simple {
+      width: min(980px, 100%);
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      padding: 42px 0 96px;
+    }
+
+    .prevencion-simple .eyebrow {
+      margin-bottom: 20px;
+    }
+
+    .prevencion-simple h2 {
+      max-width: 900px;
+      margin-bottom: 24px;
+      color: var(--blanco);
+      font-size: clamp(40px, 5.7vw, 76px);
+      font-weight: 900;
+      letter-spacing: -2.8px;
+      line-height: 0.98;
+      text-transform: uppercase;
+    }
+
+    .prevencion-introduccion {
+      max-width: 850px;
+      color: var(--texto-suave);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.75;
+    }
+
+    .prevencion-separador {
+      width: 100%;
+      height: 1px;
+      margin: 40px 0 34px;
+      background: linear-gradient(
+        90deg,
+        var(--amarillo-galeam) 0%,
+        var(--amarillo-galeam) 68px,
+        rgba(255, 255, 255, 0.18) 68px,
+        rgba(255, 255, 255, 0.18) 100%
+      );
+    }
+
+    .prevencion-cuerpo {
+      max-width: 900px;
+    }
+
+    .prevencion-cuerpo > p {
+      margin-bottom: 24px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.82;
+    }
+
+    .lista-prevencion-simple {
+      list-style: none;
+      display: grid;
+      gap: 15px;
+      margin: 8px 0 32px;
+    }
+
+    .lista-prevencion-simple li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .lista-prevencion-simple li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+      margin-top: 7px;
+      background: var(--rojo-galeam);
+    }
+
+    .prevencion-cierre {
+      max-width: 900px;
+      padding-left: 18px;
+      color: var(--amarillo-galeam);
+      border-left: 3px solid var(--amarillo-galeam);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.72;
+    }
+
+    @media (max-width: 720px) {
+      .prevencion-simple {
+        padding: 28px 0 84px;
+      }
+
+      .prevencion-simple h2 {
+        font-size: clamp(38px, 12vw, 58px);
+        letter-spacing: -1.8px;
+      }
+
+      .prevencion-introduccion,
+      .prevencion-cuerpo > p,
+      .prevencion-cierre {
+        font-size: 14px;
+      }
+
+      .lista-prevencion-simple li {
+        font-size: 13px;
+      }
+
+      .prevencion-separador {
+        margin: 30px 0 27px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1430,55 +1552,37 @@
 
       <!-- PANTALLA 04 · PREVENCIÓN, CONTROL Y REPORTE -->
       <section class="pantalla pantalla-prevencion" data-pantalla="3" aria-hidden="true">
-        <div class="modulo-contenedor">
-          <div class="modulo-encabezado">
-            <p class="eyebrow">Módulo 02 / Prevención</p>
-            <h2>La seguridad también depende del control y la comunicación.</h2>
+        <div class="prevencion-simple">
+          <p class="eyebrow">Módulo 02 / Prevención</p>
+
+          <h2>Prevención, control y reporte.</h2>
+
+          <p class="prevencion-introduccion">
+            El manejo responsable del equipo no termina con conocer las reglas.
+            También requiere mantener la calma, reconocer los riesgos del entorno
+            y tomar decisiones apegadas a los protocolos de la empresa.
+          </p>
+
+          <div class="prevencion-separador"></div>
+
+          <div class="prevencion-cuerpo">
             <p>
-              El manejo responsable del equipo no termina con conocer las reglas.
-              También requiere mantener la calma, reconocer los riesgos del entorno
-              y tomar decisiones apegadas a los protocolos de la empresa.
+              Antes, durante y después del servicio, evita actuar por impulso.
+              Mantén la atención en tu entorno, prioriza la seguridad de las
+              personas y comunica cualquier situación que pueda representar un riesgo.
             </p>
-          </div>
 
-          <div class="modulo-grid">
-            <div class="modulo-panel-frase">
-              <span class="panel-etiqueta">Toma de decisiones</span>
+            <ul class="lista-prevencion-simple">
+              <li>Revisa que el equipo se encuentre bajo resguardo y en condiciones adecuadas.</li>
+              <li>Reporta de inmediato cualquier anomalía, daño, pérdida o situación irregular.</li>
+              <li>Mantén el equipo fuera del alcance de personas no autorizadas.</li>
+              <li>Evita manipular el equipo cuando no sea necesario para tu función.</li>
+              <li>Sigue en todo momento las indicaciones de tu superior y los protocolos internos.</li>
+            </ul>
 
-              <p>
-                Prevenir también es <span>observar, reportar y actuar con responsabilidad.</span>
-              </p>
-
-              <div class="panel-apoyo">
-                <span>Conserva la calma</span>
-                <span>Identifica riesgos</span>
-                <span>Comunica anomalías</span>
-              </div>
-            </div>
-
-            <div class="modulo-panel-contenido">
-              <p class="subtitulo-modulo">Antes, durante y después del servicio</p>
-
-              <h3>Prevención, control y reporte.</h3>
-
-              <p>
-                Ante una situación de tensión, evita actuar por impulso. Mantén la
-                atención en tu entorno, prioriza la seguridad de las personas y
-                comunica cualquier situación que pueda representar un riesgo.
-              </p>
-
-              <ul class="lista-beneficios">
-                <li>Revisa que el equipo se encuentre bajo resguardo y en condiciones adecuadas.</li>
-                <li>Reporta de inmediato cualquier anomalía, daño, pérdida o situación irregular.</li>
-                <li>Mantén el equipo fuera del alcance de personas no autorizadas.</li>
-                <li>Evita manipular el equipo cuando no sea necesario para tu función.</li>
-                <li>Sigue en todo momento las indicaciones de tu superior y los protocolos internos.</li>
-              </ul>
-
-              <p class="nota-modulo">
-                El autocontrol, la capacitación y la prevención son herramientas fundamentales para proteger tu integridad, la de tus compañeros y la de las personas a tu alrededor.
-              </p>
-            </div>
+            <p class="prevencion-cierre">
+              Mantener la calma, prevenir riesgos y reportar de inmediato forma parte del manejo responsable del equipo.
+            </p>
           </div>
         </div>
       </section>
