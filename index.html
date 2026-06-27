@@ -1422,6 +1422,108 @@
       }
     }
 
+  
+    /* =========================
+       PARTÍCULAS AMBIENTALES
+       Pantallas 02 a 06
+    ========================== */
+
+    .polvo-ambiental {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.74;
+    }
+
+    .polvo-ambiental .particula-polvo {
+      width: var(--tamano);
+      height: var(--tamano);
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      display: block;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.96) 0%,
+        var(--color-particula) 38%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      box-shadow:
+        0 0 calc(var(--tamano) * 2.8) var(--brillo-particula),
+        0 0 calc(var(--tamano) * 5.6) rgba(255, 255, 255, 0.05);
+      filter: blur(0.25px);
+      opacity: var(--opacidad);
+      transform: translate3d(0, 0, 0) scale(0.94);
+      animation:
+        flotarPolvo var(--duracion) ease-in-out var(--retraso) infinite alternate,
+        destelloPolvo var(--duracion-destello) ease-in-out var(--retraso-destello) infinite;
+      will-change: transform, opacity, box-shadow, filter;
+    }
+
+    .polvo-ambiental .particula-polvo.grano {
+      filter: blur(1.2px);
+      opacity: calc(var(--opacidad) * 0.78);
+    }
+
+    .polvo-ambiental .particula-polvo.destello {
+      box-shadow:
+        0 0 calc(var(--tamano) * 3.4) var(--brillo-particula),
+        0 0 calc(var(--tamano) * 9) rgba(241, 199, 53, 0.16);
+    }
+
+    @keyframes flotarPolvo {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.92);
+      }
+
+      50% {
+        transform: translate3d(calc(var(--desplazamiento-x) * 0.45), calc(var(--desplazamiento-y) * 0.52), 0) scale(1.02);
+      }
+
+      100% {
+        transform: translate3d(var(--desplazamiento-x), var(--desplazamiento-y), 0) scale(1.12);
+      }
+    }
+
+    @keyframes destelloPolvo {
+      0%, 100% {
+        opacity: calc(var(--opacidad) * 0.48);
+        filter: blur(1px);
+      }
+
+      18% {
+        opacity: calc(var(--opacidad) * 0.76);
+      }
+
+      38% {
+        opacity: calc(var(--opacidad) * 1.08);
+        filter: blur(0.18px);
+      }
+
+      50% {
+        opacity: calc(var(--opacidad) * 1.28);
+        filter: blur(0px);
+      }
+
+      62% {
+        opacity: calc(var(--opacidad) * 0.86);
+        filter: blur(0.55px);
+      }
+
+      82% {
+        opacity: calc(var(--opacidad) * 1.05);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .polvo-ambiental .particula-polvo {
+        animation: none;
+      }
+    }
+
   </style>
 </head>
 
@@ -1498,6 +1600,7 @@
 
       <!-- PANTALLA 02 · VISTA GENERAL DE MÓDULOS -->
       <section class="pantalla pantalla-programa" data-pantalla="1" aria-hidden="true">
+        <div class="polvo-ambiental" aria-hidden="true"></div>
         <div class="programa-contenedor">
           <div class="programa-titulo">
             <p class="eyebrow">Antes de comenzar</p>
@@ -1534,6 +1637,7 @@
 
       <!-- PANTALLA 03 · MÓDULO DE SEGURIDAD -->
       <section class="pantalla pantalla-seguridad" data-pantalla="2" aria-hidden="true">
+        <div class="polvo-ambiental" aria-hidden="true"></div>
         <div class="modulo-contenedor">
           <div class="modulo-encabezado">
             <p class="eyebrow">Módulo 01 / Seguridad</p>
@@ -1590,6 +1694,7 @@
 
       <!-- PANTALLA 04 · PREVENCIÓN, CONTROL Y REPORTE -->
       <section class="pantalla pantalla-prevencion" data-pantalla="3" aria-hidden="true">
+        <div class="polvo-ambiental" aria-hidden="true"></div>
         <div class="prevencion-simple">
           <p class="eyebrow">Módulo 02 / Prevención</p>
 
@@ -1627,6 +1732,7 @@
 
       <!-- PANTALLA 05 · ACTIVIDAD INTERACTIVA -->
       <section class="pantalla pantalla-actividad" data-pantalla="4" aria-hidden="true">
+        <div class="polvo-ambiental" aria-hidden="true"></div>
         <div class="actividad-contenedor">
           <div class="actividad-encabezado">
             <p class="eyebrow">Actividad interactiva</p>
@@ -1684,6 +1790,7 @@
 
       <!-- PANTALLA 06 · PREVIO AL REGISTRO -->
       <section class="pantalla pantalla-inicio" data-pantalla="5" aria-hidden="true">
+        <div class="polvo-ambiental" aria-hidden="true"></div>
         <div class="inicio-contenedor">
           <p class="eyebrow">Siguiente etapa</p>
 
@@ -1750,6 +1857,80 @@
       const botonSiguienteGlobal = document.getElementById("botonSiguienteGlobal");
       const barraNavegacionGlobal = document.querySelector(".barra-navegacion-global");
       const avisoRegistro = document.getElementById("avisoRegistro");
+
+
+      // Partículas ambientales: solo aparecen en las pantallas internas.
+      const capasPolvo = [
+        ...document.querySelectorAll(
+          ".pantalla-programa .polvo-ambiental, " +
+          ".pantalla-seguridad .polvo-ambiental, " +
+          ".pantalla-prevencion .polvo-ambiental, " +
+          ".pantalla-actividad .polvo-ambiental, " +
+          ".pantalla-inicio .polvo-ambiental"
+        )
+      ];
+
+      const coloresPolvo = [
+        {
+          color: "rgba(255, 255, 255, 0.72)",
+          brillo: "rgba(255, 255, 255, 0.18)"
+        },
+        {
+          color: "rgba(241, 199, 53, 0.78)",
+          brillo: "rgba(241, 199, 53, 0.20)"
+        },
+        {
+          color: "rgba(149, 205, 235, 0.60)",
+          brillo: "rgba(72, 158, 206, 0.18)"
+        }
+      ];
+
+      const cantidadPolvo = window.matchMedia("(max-width: 720px)").matches ? 18 : 34;
+
+      capasPolvo.forEach((capa, indiceCapa) => {
+        for (let indice = 0; indice < cantidadPolvo; indice += 1) {
+          const particula = document.createElement("span");
+          const paleta = coloresPolvo[
+            (indice + indiceCapa) % coloresPolvo.length
+          ];
+
+          const tamano = 1.4 + Math.random() * 3.8;
+          const duracion = 8 + Math.random() * 9;
+          const retraso = -(Math.random() * duracion);
+          const duracionDestello = 2.6 + Math.random() * 4.8;
+          const retrasoDestello = -(Math.random() * duracionDestello);
+          const desplazamientoX = -26 + Math.random() * 52;
+          const desplazamientoY = -34 + Math.random() * 68;
+
+          particula.className = "particula-polvo";
+
+          if (indice % 6 === 0) {
+            particula.classList.add("grano");
+          }
+
+          if (indice % 4 === 0) {
+            particula.classList.add("destello");
+          }
+
+          particula.style.setProperty("--tamano", `${tamano.toFixed(2)}px`);
+          particula.style.setProperty("--x", `${(Math.random() * 100).toFixed(2)}%`);
+          particula.style.setProperty("--y", `${(Math.random() * 100).toFixed(2)}%`);
+          particula.style.setProperty("--duracion", `${duracion.toFixed(2)}s`);
+          particula.style.setProperty("--retraso", `${retraso.toFixed(2)}s`);
+          particula.style.setProperty("--duracion-destello", `${duracionDestello.toFixed(2)}s`);
+          particula.style.setProperty("--retraso-destello", `${retrasoDestello.toFixed(2)}s`);
+          particula.style.setProperty("--desplazamiento-x", `${desplazamientoX.toFixed(1)}px`);
+          particula.style.setProperty("--desplazamiento-y", `${desplazamientoY.toFixed(1)}px`);
+          particula.style.setProperty(
+            "--opacidad",
+            `${(0.16 + Math.random() * 0.34).toFixed(2)}`
+          );
+          particula.style.setProperty("--color-particula", paleta.color);
+          particula.style.setProperty("--brillo-particula", paleta.brillo);
+
+          capa.appendChild(particula);
+        }
+      });
 
       const puntosActividad = document.getElementById("puntosActividad");
       const preguntaActividad = document.getElementById("preguntaActividad");
