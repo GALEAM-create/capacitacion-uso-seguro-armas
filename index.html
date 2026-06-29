@@ -1524,6 +1524,403 @@
       }
     }
 
+
+    /* =========================
+       REGISTRO, EVALUACIÓN Y RESULTADO
+    ========================== */
+
+    .pantalla-registro,
+    .pantalla-evaluacion,
+    .pantalla-resultado {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+      padding: 60px 8% 46px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: rgba(4, 8, 13, 0.64);
+    }
+
+    .pantalla-registro::before,
+    .pantalla-evaluacion::before,
+    .pantalla-resultado::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .pantalla-registro::before {
+      background:
+        radial-gradient(circle at 84% 18%, rgba(241, 199, 53, 0.13), transparent 28%),
+        linear-gradient(135deg, rgba(3, 7, 11, 0.76), rgba(9, 19, 29, 0.36));
+    }
+
+    .pantalla-evaluacion::before {
+      background:
+        radial-gradient(circle at 14% 15%, rgba(201, 32, 50, 0.10), transparent 28%),
+        linear-gradient(135deg, rgba(3, 7, 11, 0.78), rgba(9, 19, 29, 0.34));
+    }
+
+    .pantalla-resultado::before {
+      background:
+        radial-gradient(circle at 82% 18%, rgba(111, 178, 28, 0.18), transparent 28%),
+        linear-gradient(135deg, rgba(3, 7, 11, 0.78), rgba(9, 19, 29, 0.34));
+    }
+
+    .registro-contenedor,
+    .evaluacion-contenedor,
+    .resultado-contenedor {
+      width: min(980px, 100%);
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+    }
+
+    .registro-contenedor h2,
+    .evaluacion-contenedor h2,
+    .resultado-contenedor h2 {
+      max-width: 800px;
+      margin-bottom: 18px;
+      color: var(--blanco);
+      font-size: clamp(34px, 4.7vw, 62px);
+      font-weight: 900;
+      letter-spacing: -2.3px;
+      line-height: 0.99;
+      text-transform: uppercase;
+    }
+
+    .registro-contenedor > p,
+    .evaluacion-contenedor > p,
+    .resultado-contenedor > p {
+      max-width: 720px;
+      color: var(--texto-suave);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.75;
+    }
+
+    .formulario-registro {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 34px;
+      padding: 30px;
+      background: rgba(7, 15, 23, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: var(--sombra);
+      backdrop-filter: blur(10px);
+    }
+
+    .campo-registro {
+      display: grid;
+      gap: 9px;
+    }
+
+    .campo-registro.ancho-completo {
+      grid-column: 1 / -1;
+    }
+
+    .campo-registro label {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.95px;
+      text-transform: uppercase;
+    }
+
+    .campo-registro input,
+    .campo-registro select {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 15px;
+      outline: none;
+      color: var(--blanco);
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 0;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .campo-registro input::placeholder {
+      color: rgba(255, 255, 255, 0.34);
+    }
+
+    .campo-registro select option {
+      color: #101820;
+      background: #ffffff;
+    }
+
+    .campo-registro input:focus,
+    .campo-registro select:focus {
+      border-color: var(--amarillo-galeam);
+      background: rgba(241, 199, 53, 0.06);
+    }
+
+    .campo-registro input.invalido,
+    .campo-registro select.invalido {
+      border-color: var(--rojo-error);
+    }
+
+    .aviso-formulario,
+    .aviso-evaluacion,
+    .estado-guardado {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      color: var(--blanco);
+      background: rgba(239, 89, 104, 0.12);
+      border: 1px solid rgba(239, 89, 104, 0.48);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .aviso-formulario.visible,
+    .aviso-evaluacion.visible,
+    .estado-guardado.visible {
+      display: block;
+    }
+
+    .estado-guardado.cargando {
+      color: var(--azul-marino);
+      background: rgba(241, 199, 53, 0.95);
+      border-color: var(--amarillo-galeam);
+    }
+
+    .estado-guardado.error {
+      background: rgba(239, 89, 104, 0.12);
+      border-color: rgba(239, 89, 104, 0.48);
+    }
+
+    .evaluacion-resumen {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 32px 0 18px;
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .evaluacion-resumen span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .evaluacion-resumen strong {
+      color: var(--amarillo-galeam);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .lista-preguntas {
+      display: grid;
+      gap: 16px;
+    }
+
+    .pregunta-evaluacion {
+      padding: 24px;
+      background: rgba(7, 15, 23, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+    }
+
+    .pregunta-evaluacion.incompleta {
+      border-color: rgba(239, 89, 104, 0.72);
+    }
+
+    .pregunta-numero {
+      display: inline-flex;
+      margin-bottom: 13px;
+      color: var(--amarillo-galeam);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .pregunta-evaluacion h3 {
+      margin-bottom: 18px;
+      color: var(--blanco);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .opciones-evaluacion {
+      display: grid;
+      gap: 10px;
+    }
+
+    .opcion-evaluacion {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-height: 46px;
+      padding: 13px 14px;
+      color: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .opcion-evaluacion:hover {
+      border-color: rgba(241, 199, 53, 0.58);
+      background: rgba(241, 199, 53, 0.06);
+    }
+
+    .opcion-evaluacion input {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      margin-top: 1px;
+      accent-color: var(--amarillo-galeam);
+      cursor: pointer;
+    }
+
+    .resultado-tarjeta {
+      margin-top: 34px;
+      padding: 38px;
+      text-align: center;
+      background: rgba(7, 15, 23, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: var(--sombra);
+      backdrop-filter: blur(10px);
+    }
+
+    .resultado-icono {
+      width: 66px;
+      height: 66px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--azul-marino);
+      background: var(--verde-acierto);
+      border-radius: 50%;
+      font-size: 31px;
+      font-weight: 900;
+    }
+
+    .resultado-icono.no-aprobado {
+      color: var(--blanco);
+      background: var(--rojo-error);
+    }
+
+    .resultado-tarjeta h3 {
+      margin-bottom: 10px;
+      color: var(--blanco);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .resultado-tarjeta p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--texto-suave);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.75;
+    }
+
+    .resultado-calificacion {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+      margin: 22px 0 19px;
+      color: var(--amarillo-galeam);
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .resultado-calificacion small {
+      color: rgba(255, 255, 255, 0.56);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .resultado-datos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 28px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    .resultado-datos div {
+      padding: 16px 14px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .resultado-datos span {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(255, 255, 255, 0.50);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.85px;
+      text-transform: uppercase;
+    }
+
+    .resultado-datos strong {
+      display: block;
+      overflow: hidden;
+      color: var(--blanco);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.45;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 720px) {
+      .pantalla-registro,
+      .pantalla-evaluacion,
+      .pantalla-resultado {
+        padding: 42px 6% 32px;
+      }
+
+      .formulario-registro {
+        grid-template-columns: 1fr;
+        padding: 22px;
+      }
+
+      .campo-registro.ancho-completo {
+        grid-column: auto;
+      }
+
+      .pregunta-evaluacion,
+      .resultado-tarjeta {
+        padding: 22px;
+      }
+
+      .resultado-datos {
+        grid-template-columns: 1fr;
+      }
+
+      .evaluacion-resumen {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 
@@ -1552,7 +1949,7 @@
       <div class="progreso-global" aria-label="Progreso de capacitación">
         <p>
           <span id="etiquetaProgreso">Introducción</span>
-          <strong><span id="pasoActual">01</span> / 06</strong>
+          <strong><span id="pasoActual">01</span> / 09</strong>
         </p>
 
         <div class="linea-progreso">
@@ -1831,6 +2228,222 @@
           </p>
         </div>
       </section>
+
+      <!-- PANTALLA 07 · REGISTRO DEL PARTICIPANTE -->
+      <section class="pantalla pantalla-registro" data-pantalla="6" aria-hidden="true">
+        <div class="registro-contenedor">
+          <p class="eyebrow">Registro del participante</p>
+          <h2>Confirma tus datos antes de la evaluación.</h2>
+          <p>
+            Esta información se utilizará únicamente para identificar tu resultado dentro de la plataforma de capacitación.
+          </p>
+
+          <form class="formulario-registro" id="formularioRegistro" novalidate>
+            <div class="campo-registro ancho-completo">
+              <label for="nombreParticipante">Nombre completo</label>
+              <input
+                id="nombreParticipante"
+                name="nombre"
+                type="text"
+                autocomplete="name"
+                maxlength="120"
+                placeholder="Escribe tu nombre completo"
+                required
+              >
+            </div>
+
+            <div class="campo-registro">
+              <label for="numeroEmpleado">Número de empleado</label>
+              <input
+                id="numeroEmpleado"
+                name="numero_empleado"
+                type="text"
+                inputmode="numeric"
+                maxlength="30"
+                placeholder="Ejemplo: 12345"
+                required
+              >
+            </div>
+
+            <div class="campo-registro">
+              <label for="servicioParticipante">Servicio asignado</label>
+              <input
+                id="servicioParticipante"
+                name="servicio"
+                type="text"
+                maxlength="120"
+                placeholder="Ejemplo: Corporativo / Servicio"
+                required
+              >
+            </div>
+          </form>
+
+          <div class="aviso-formulario" id="avisoFormulario" role="alert">
+            Completa nombre, número de empleado y servicio para continuar.
+          </div>
+        </div>
+      </section>
+
+      <!-- PANTALLA 08 · EVALUACIÓN FINAL -->
+      <section class="pantalla pantalla-evaluacion" data-pantalla="7" aria-hidden="true">
+        <div class="evaluacion-contenedor">
+          <p class="eyebrow">Evaluación final</p>
+          <h2>Valida los conocimientos esenciales.</h2>
+          <p>
+            Selecciona una respuesta por pregunta. La calificación mínima aprobatoria es de 8.0.
+          </p>
+
+          <div class="evaluacion-resumen">
+            <span>Respuestas contestadas</span>
+            <strong><span id="respuestasContestadas">0</span> / 10</strong>
+          </div>
+
+          <form class="lista-preguntas" id="formularioEvaluacion" novalidate>
+            <article class="pregunta-evaluacion" data-pregunta="1">
+              <span class="pregunta-numero">Pregunta 01</span>
+              <h3>¿Cómo debe considerarse siempre un arma de fuego durante el servicio?</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta1" value="a"> Como si estuviera descargada hasta comprobarlo.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta1" value="b"> Como si estuviera cargada.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta1" value="c"> Como un equipo que puede manipularse libremente.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="2">
+              <span class="pregunta-numero">Pregunta 02</span>
+              <h3>¿Dónde debe mantenerse el dedo cuando no existe una necesidad legítima y autorizada?</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta2" value="a"> Dentro del guardamonte, cerca del disparador.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta2" value="b"> Sobre el disparador para estar preparado.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta2" value="c"> Fuera del disparador.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="3">
+              <span class="pregunta-numero">Pregunta 03</span>
+              <h3>La orientación del equipo debe mantenerse:</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta3" value="a"> Hacia una dirección segura.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta3" value="b"> Hacia donde haya más espacio.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta3" value="c"> Hacia el suelo en todos los casos.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="4">
+              <span class="pregunta-numero">Pregunta 04</span>
+              <h3>¿Quién puede tener acceso al equipo?</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta4" value="a"> Cualquier compañero que esté presente.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta4" value="b"> Únicamente personal con capacitación y autorización.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta4" value="c"> Personas de confianza dentro del servicio.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="5">
+              <span class="pregunta-numero">Pregunta 05</span>
+              <h3>¿Qué se debe hacer cuando no es necesario manipular el equipo para la función?</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta5" value="a"> Evitar manipularlo innecesariamente.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta5" value="b"> Practicar movimientos para familiarizarse.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta5" value="c"> Mostrarlo a otros para confirmar que funciona.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="6">
+              <span class="pregunta-numero">Pregunta 06</span>
+              <h3>Ante una anomalía, daño, pérdida o situación irregular relacionada con el equipo, se debe:</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta6" value="a"> Esperar al cambio de turno para comentarlo.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta6" value="b"> Reportarlo de inmediato.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta6" value="c"> Resolverlo sin avisar para evitar problemas.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="7">
+              <span class="pregunta-numero">Pregunta 07</span>
+              <h3>Ante una situación de tensión, la conducta esperada es:</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta7" value="a"> Actuar por impulso para responder rápido.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta7" value="b"> Mantener la calma y apegarse a los protocolos.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta7" value="c"> Pedir a otra persona que tome cualquier decisión.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="8">
+              <span class="pregunta-numero">Pregunta 08</span>
+              <h3>¿Qué forma parte del manejo responsable antes, durante y después del servicio?</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta8" value="a"> Mantener el equipo bajo resguardo y en condiciones adecuadas.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta8" value="b"> Dejar el equipo disponible para cualquier relevo.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta8" value="c"> Revisarlo solo si se presenta una emergencia.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="9">
+              <span class="pregunta-numero">Pregunta 09</span>
+              <h3>¿Cuándo es válido apuntar el equipo a personas, objetos o zonas?</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta9" value="a"> Cuando se desea llamar la atención.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta9" value="b"> Cuando no exista una razón operativa justificada.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta9" value="c"> Nunca sin una razón operativa justificada.</label>
+              </div>
+            </article>
+
+            <article class="pregunta-evaluacion" data-pregunta="10">
+              <span class="pregunta-numero">Pregunta 10</span>
+              <h3>Las indicaciones del superior y los protocolos internos deben:</h3>
+              <div class="opciones-evaluacion">
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta10" value="a"> Seguirse en todo momento.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta10" value="b"> Considerarse solo cuando haya supervisión.</label>
+                <label class="opcion-evaluacion"><input type="radio" name="pregunta10" value="c"> Aplicarse únicamente en servicios de alto riesgo.</label>
+              </div>
+            </article>
+          </form>
+
+          <div class="aviso-evaluacion" id="avisoEvaluacion" role="alert">
+            Responde las preguntas pendientes antes de finalizar la evaluación.
+          </div>
+
+          <div class="estado-guardado" id="estadoGuardado" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- PANTALLA 09 · RESULTADO -->
+      <section class="pantalla pantalla-resultado" data-pantalla="8" aria-hidden="true">
+        <div class="resultado-contenedor">
+          <p class="eyebrow">Resultado registrado</p>
+          <h2>Evaluación finalizada.</h2>
+
+          <div class="resultado-tarjeta">
+            <div class="resultado-icono" id="resultadoIcono">✓</div>
+            <h3 id="resultadoTitulo">Resultado guardado</h3>
+            <p id="resultadoMensaje">
+              Tu evaluación se registró correctamente en la plataforma.
+            </p>
+
+            <div class="resultado-calificacion">
+              <span id="resultadoCalificacion">0.0</span>
+              <small>/ 10</small>
+            </div>
+
+            <div class="resultado-datos">
+              <div>
+                <span>Participante</span>
+                <strong id="resultadoNombre">—</strong>
+              </div>
+              <div>
+                <span>Servicio</span>
+                <strong id="resultadoServicio">—</strong>
+              </div>
+              <div>
+                <span>Estatus</span>
+                <strong id="resultadoEstatus">—</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <div class="barra-navegacion-global" aria-label="Navegación de capacitación">
@@ -1846,8 +2459,13 @@
     </div>
   </div>
 
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const API_URL = "https://capacitacion-production-3120.up.railway.app";
+      const NOMBRE_CURSO = "Uso Seguro de Armas de Fuego";
+      const CALIFICACION_MINIMA = 8;
+
       const pantallas = [...document.querySelectorAll(".pantalla")];
       const botonesNavegacion = document.querySelectorAll("[data-ir-a]");
       const pasoActual = document.getElementById("pasoActual");
@@ -1856,8 +2474,25 @@
       const botonAnteriorGlobal = document.getElementById("botonAnteriorGlobal");
       const botonSiguienteGlobal = document.getElementById("botonSiguienteGlobal");
       const barraNavegacionGlobal = document.querySelector(".barra-navegacion-global");
-      const avisoRegistro = document.getElementById("avisoRegistro");
 
+      const formularioRegistro = document.getElementById("formularioRegistro");
+      const nombreParticipante = document.getElementById("nombreParticipante");
+      const numeroEmpleado = document.getElementById("numeroEmpleado");
+      const servicioParticipante = document.getElementById("servicioParticipante");
+      const avisoFormulario = document.getElementById("avisoFormulario");
+
+      const formularioEvaluacion = document.getElementById("formularioEvaluacion");
+      const respuestasContestadas = document.getElementById("respuestasContestadas");
+      const avisoEvaluacion = document.getElementById("avisoEvaluacion");
+      const estadoGuardado = document.getElementById("estadoGuardado");
+
+      const resultadoIcono = document.getElementById("resultadoIcono");
+      const resultadoTitulo = document.getElementById("resultadoTitulo");
+      const resultadoMensaje = document.getElementById("resultadoMensaje");
+      const resultadoCalificacion = document.getElementById("resultadoCalificacion");
+      const resultadoNombre = document.getElementById("resultadoNombre");
+      const resultadoServicio = document.getElementById("resultadoServicio");
+      const resultadoEstatus = document.getElementById("resultadoEstatus");
 
       // Partículas ambientales: solo aparecen en las pantallas internas.
       const capasPolvo = [
@@ -1941,6 +2576,8 @@
       let pantallaActual = 0;
       let animacionEnCurso = false;
       let indiceActividad = 0;
+      let datosParticipante = null;
+      let guardandoResultado = false;
 
       const etiquetas = [
         "Introducción",
@@ -1948,7 +2585,10 @@
         "Módulo 01",
         "Módulo 02",
         "Actividad",
-        "Preparación"
+        "Preparación",
+        "Registro",
+        "Evaluación",
+        "Resultado"
       ];
 
       const textosSiguiente = [
@@ -1957,7 +2597,10 @@
         "Módulo 02 →",
         "Actividad →",
         "Completa la actividad",
-        "Continuar al registro →"
+        "Continuar al registro →",
+        "Continuar a evaluación →",
+        "Finalizar y guardar →",
+        "Resultado guardado"
       ];
 
       const actividad = [
@@ -1982,6 +2625,19 @@
           mensaje: "Actividad completada. El reconocimiento visual ayuda a identificar componentes básicos y refuerza el uso responsable del equipo."
         }
       ];
+
+      const respuestasCorrectas = {
+        pregunta1: "b",
+        pregunta2: "c",
+        pregunta3: "a",
+        pregunta4: "b",
+        pregunta5: "a",
+        pregunta6: "b",
+        pregunta7: "b",
+        pregunta8: "a",
+        pregunta9: "c",
+        pregunta10: "a"
+      };
 
       function actividadCompletada() {
         return indiceActividad >= actividad.length;
@@ -2016,7 +2672,10 @@
         barraNavegacionGlobal.classList.toggle("oculta", indice === 0);
 
         const bloqueaPorActividad = indice === 4 && !actividadCompletada();
-        botonSiguienteGlobal.disabled = bloqueaPorActividad;
+        const esResultadoFinal = indice === pantallas.length - 1;
+
+        botonSiguienteGlobal.disabled = bloqueaPorActividad || guardandoResultado;
+        botonSiguienteGlobal.classList.toggle("oculto", esResultadoFinal);
         botonSiguienteGlobal.textContent = bloqueaPorActividad
           ? "Completa la actividad"
           : textosSiguiente[indice];
@@ -2071,6 +2730,160 @@
         }, 650);
       }
 
+      function validarRegistro() {
+        const campos = [nombreParticipante, numeroEmpleado, servicioParticipante];
+        let esValido = true;
+
+        campos.forEach(campo => {
+          const vacio = !campo.value.trim();
+          campo.classList.toggle("invalido", vacio);
+          if (vacio) esValido = false;
+        });
+
+        avisoFormulario.classList.toggle("visible", !esValido);
+
+        if (!esValido) {
+          const primerCampoInvalido = campos.find(campo => !campo.value.trim());
+          primerCampoInvalido?.focus();
+          return false;
+        }
+
+        datosParticipante = {
+          nombre: nombreParticipante.value.trim(),
+          numero_empleado: numeroEmpleado.value.trim(),
+          servicio: servicioParticipante.value.trim()
+        };
+
+        return true;
+      }
+
+      function actualizarContadorRespuestas() {
+        const respondidas = Object.keys(respuestasCorrectas).filter(nombre => {
+          return formularioEvaluacion.querySelector(`input[name="${nombre}"]:checked`);
+        }).length;
+
+        respuestasContestadas.textContent = respondidas;
+        return respondidas;
+      }
+
+      function obtenerResultadoEvaluacion() {
+        let correctas = 0;
+        let incompletas = [];
+
+        Object.keys(respuestasCorrectas).forEach((nombrePregunta, indice) => {
+          const seleccionada = formularioEvaluacion.querySelector(
+            `input[name="${nombrePregunta}"]:checked`
+          );
+          const tarjeta = formularioEvaluacion.querySelector(
+            `[data-pregunta="${indice + 1}"]`
+          );
+
+          tarjeta.classList.remove("incompleta");
+
+          if (!seleccionada) {
+            incompletas.push(indice + 1);
+            tarjeta.classList.add("incompleta");
+            return;
+          }
+
+          if (seleccionada.value === respuestasCorrectas[nombrePregunta]) {
+            correctas += 1;
+          }
+        });
+
+        return {
+          correctas,
+          incompletas,
+          calificacion: Number((correctas / Object.keys(respuestasCorrectas).length * 10).toFixed(1))
+        };
+      }
+
+      function mostrarEstadoGuardado(mensaje, tipo) {
+        estadoGuardado.textContent = mensaje;
+        estadoGuardado.className = `estado-guardado visible ${tipo || ""}`.trim();
+      }
+
+      function mostrarResultado(resultado) {
+        const aprobado = resultado.calificacion >= CALIFICACION_MINIMA;
+
+        resultadoIcono.textContent = aprobado ? "✓" : "!";
+        resultadoIcono.classList.toggle("no-aprobado", !aprobado);
+
+        resultadoTitulo.textContent = aprobado
+          ? "Capacitación aprobada"
+          : "Capacitación no aprobada";
+
+        resultadoMensaje.textContent = aprobado
+          ? "Tu resultado fue registrado correctamente. Continúa aplicando los protocolos de seguridad establecidos."
+          : "Tu resultado fue registrado correctamente. Revisa nuevamente el contenido y consulta con tu superior para reforzar los temas necesarios.";
+
+        resultadoCalificacion.textContent = resultado.calificacion.toFixed(1);
+        resultadoNombre.textContent = datosParticipante.nombre;
+        resultadoServicio.textContent = datosParticipante.servicio;
+        resultadoEstatus.textContent = aprobado ? "Aprobado" : "No aprobado";
+      }
+
+      async function guardarResultado() {
+        const resultado = obtenerResultadoEvaluacion();
+
+        if (resultado.incompletas.length > 0) {
+          avisoEvaluacion.classList.add("visible");
+          const primeraPendiente = formularioEvaluacion.querySelector(
+            `[data-pregunta="${resultado.incompletas[0]}"]`
+          );
+          primeraPendiente?.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+
+        avisoEvaluacion.classList.remove("visible");
+
+        if (!datosParticipante && !validarRegistro()) {
+          cambiarPantalla(6);
+          return;
+        }
+
+        guardandoResultado = true;
+        actualizarProgreso(pantallaActual);
+        mostrarEstadoGuardado("Guardando resultado en la plataforma...", "cargando");
+
+        try {
+          const respuesta = await fetch(`${API_URL}/api/resultados`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              nombre: datosParticipante.nombre,
+              numero_empleado: datosParticipante.numero_empleado,
+              servicio: datosParticipante.servicio,
+              curso: NOMBRE_CURSO,
+              calificacion: resultado.calificacion,
+              aprobado: resultado.calificacion >= CALIFICACION_MINIMA
+            })
+          });
+
+          const datosRespuesta = await respuesta.json().catch(() => ({}));
+
+          if (!respuesta.ok) {
+            throw new Error(
+              datosRespuesta.mensaje || "No fue posible guardar el resultado."
+            );
+          }
+
+          estadoGuardado.className = "estado-guardado";
+          mostrarResultado(resultado);
+          cambiarPantalla(8);
+        } catch (error) {
+          mostrarEstadoGuardado(
+            `No se pudo guardar el resultado. Verifica tu conexión e inténtalo nuevamente. Detalle: ${error.message}`,
+            "error"
+          );
+        } finally {
+          guardandoResultado = false;
+          actualizarProgreso(pantallaActual);
+        }
+      }
+
       hotspots.forEach(hotspot => {
         hotspot.addEventListener("click", () => {
           if (actividadCompletada()) return;
@@ -2099,27 +2912,66 @@
       });
 
       botonAnteriorGlobal.addEventListener("click", () => {
-        cambiarPantalla(pantallaActual - 1);
+        if (!guardandoResultado) {
+          cambiarPantalla(pantallaActual - 1);
+        }
       });
 
-      botonSiguienteGlobal.addEventListener("click", () => {
-        if (pantallaActual === pantallas.length - 1) {
-          avisoRegistro.classList.add("visible");
+      botonSiguienteGlobal.addEventListener("click", async () => {
+        if (guardandoResultado) return;
 
-          setTimeout(() => {
-            avisoRegistro.classList.remove("visible");
-          }, 4500);
+        if (pantallaActual === 4 && !actividadCompletada()) return;
 
+        if (pantallaActual === 6) {
+          if (validarRegistro()) {
+            cambiarPantalla(7);
+          }
           return;
         }
 
-        if (pantallaActual === 4 && !actividadCompletada()) return;
-        cambiarPantalla(pantallaActual + 1);
+        if (pantallaActual === 7) {
+          await guardarResultado();
+          return;
+        }
+
+        if (pantallaActual < pantallas.length - 1) {
+          cambiarPantalla(pantallaActual + 1);
+        }
+      });
+
+      formularioRegistro.addEventListener("submit", evento => {
+        evento.preventDefault();
+        if (validarRegistro()) {
+          cambiarPantalla(7);
+        }
+      });
+
+      [nombreParticipante, numeroEmpleado, servicioParticipante].forEach(campo => {
+        campo.addEventListener("input", () => {
+          campo.classList.remove("invalido");
+          if (
+            nombreParticipante.value.trim() &&
+            numeroEmpleado.value.trim() &&
+            servicioParticipante.value.trim()
+          ) {
+            avisoFormulario.classList.remove("visible");
+          }
+        });
+      });
+
+      formularioEvaluacion.addEventListener("change", () => {
+        actualizarContadorRespuestas();
+        avisoEvaluacion.classList.remove("visible");
+        formularioEvaluacion
+          .querySelectorAll(".pregunta-evaluacion.incompleta")
+          .forEach(tarjeta => tarjeta.classList.remove("incompleta"));
       });
 
       actualizarActividad();
+      actualizarContadorRespuestas();
       actualizarProgreso(pantallaActual);
     });
   </script>
+
 </body>
 </html>
